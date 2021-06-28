@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 1,
+  "id": "camerautils",
+  "version": "${version}",
+  "name": "Camera Utils",
+  "description": "Camera Utils",
+  "authors": [
+    "Max Henkel"
+  ],
+  "contact": {
+    "website": "https://modrepo.de"
+  },
+  "license": "All Rights Reserved",
+  "environment": "client",
+  "entrypoints": {
+    "client": [
+      "de.maxhenkel.camerautils.CameraUtils"
+    ]
+  },
+  "mixins": [
+    "camerautils.mixins.json"
+  ],
+  "depends": {
+    "fabricloader": ">=${loader_version}",
+    "fabric": ">=${fabric_version}",
+    "minecraft": "${minecraft_dependency}",
+    "java": ">=16"
+  }
+}
