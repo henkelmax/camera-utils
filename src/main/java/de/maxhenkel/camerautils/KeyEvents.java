@@ -24,6 +24,20 @@ public class KeyEvents {
         });
     }
 
+    public boolean onScroll(double amount) {
+        if (CameraUtils.ZOOM.isDown()) {
+            double zoom = CameraUtils.CLIENT_CONFIG.zoom.get();
+            double zoomSensitivity = CameraUtils.CLIENT_CONFIG.zoomSensitivity.get();
+            zoom = Math.max(0.001, Math.min(2, zoom + (-amount * zoomSensitivity)));
+            CameraUtils.CLIENT_CONFIG.zoom.set(zoom);
+            CameraUtils.CLIENT_CONFIG.zoom.save();
+            mc.player.displayClientMessage(new TranslatableComponent("message.camerautils.zoom", Math.round((1D - zoom) * 100D)), true);
+            return true;
+        }
+
+        return false;
+    }
+
     private void toggleSmoothCamera() {
         boolean newValue = !CameraUtils.CLIENT_CONFIG.cinematicCamera.get();
         CameraUtils.CLIENT_CONFIG.cinematicCamera.set(newValue);

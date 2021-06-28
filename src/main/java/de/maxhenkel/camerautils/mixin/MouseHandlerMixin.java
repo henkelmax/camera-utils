@@ -53,15 +53,25 @@ public abstract class MouseHandlerMixin {
         double sensCubed = sensitivity * sensitivity * sensitivity;
         double h = sensCubed * 8D;
 
-        boolean inSpyGlass=minecraft.options.getCameraType().isFirstPerson() && minecraft.player.isScoping();
+        boolean inSpyGlass = minecraft.options.getCameraType().isFirstPerson() && minecraft.player.isScoping();
 
-        double smoothedX = smoothTurnX.getNewDeltaValue(accumulatedDX * (inSpyGlass?sensCubed:h), deltaTime * h * toValue(smoothness, min, max));
-        double smoothedY = smoothTurnY.getNewDeltaValue(accumulatedDY * (inSpyGlass?sensCubed:h), deltaTime * h * toValue(smoothness, min, max));
+        double smoothedX = smoothTurnX.getNewDeltaValue(accumulatedDX * (inSpyGlass ? sensCubed : h), deltaTime * h * toValue(smoothness, min, max));
+        double smoothedY = smoothTurnY.getNewDeltaValue(accumulatedDY * (inSpyGlass ? sensCubed : h), deltaTime * h * toValue(smoothness, min, max));
 
         accumulatedDX = 0D;
         accumulatedDY = 0D;
 
         minecraft.player.turn(smoothedX, smoothedY * (minecraft.options.invertYMouse ? -1D : 1D));
+    }
+
+    @Inject(at = @At("HEAD"), method = "onScroll", cancellable = true)
+    private void onScroll(long window, double d, double amount, CallbackInfo info) {
+        if (window != Minecraft.getInstance().getWindow().getWindow()) {
+            return;
+        }
+        if (CameraUtils.KEY_EVENTS.onScroll(amount)) {
+            info.cancel();
+        }
     }
 
     @Shadow
