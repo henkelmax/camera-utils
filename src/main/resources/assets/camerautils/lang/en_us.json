@@ -3,6 +3,7 @@
   "key.camerautils.open_gui": "Open Smooth Camera Settings",
   "key.camerautils.toggle_smooth_camera": "Toggle Smooth Camera",
   "key.camerautils.zoom": "Zoom",
+  "key.camerautils.shoulder_cam": "Toggle Shoulder Camera",
   "message.camerautils.smooth_value": "Smoothness %s%%",
   "message.camerautils.smooth_value_off": "Smoothness OFF",
   "gui.camerautils.gui.title": "Smooth Camera Settings",

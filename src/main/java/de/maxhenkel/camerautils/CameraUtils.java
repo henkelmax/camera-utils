@@ -23,6 +23,7 @@ public class CameraUtils implements ClientModInitializer {
     public static KeyMapping CAMERA_GUI;
     public static KeyMapping TOGGLE_SMOOTH_CAMERA;
     public static KeyMapping ZOOM;
+    public static KeyMapping SHOULDER_CAM;
 
     @Override
     public void onInitializeClient() {
@@ -31,6 +32,7 @@ public class CameraUtils implements ClientModInitializer {
         CAMERA_GUI = KeyBindingHelper.registerKeyBinding(new KeyMapping("key.camerautils.open_gui", GLFW.GLFW_KEY_O, "key.categories.camerautils"));
         TOGGLE_SMOOTH_CAMERA = KeyBindingHelper.registerKeyBinding(new KeyMapping("key.camerautils.toggle_smooth_camera", InputConstants.UNKNOWN.getValue(), "key.categories.camerautils"));
         ZOOM = KeyBindingHelper.registerKeyBinding(new KeyMapping("key.camerautils.zoom", GLFW.GLFW_KEY_LEFT_ALT, "key.categories.camerautils"));
+        SHOULDER_CAM = KeyBindingHelper.registerKeyBinding(new KeyMapping("key.camerautils.shoulder_cam", InputConstants.UNKNOWN.getValue(), "key.categories.camerautils"));
         Minecraft mc = Minecraft.getInstance();
         ConfigBuilder.create(mc.gameDirectory.toPath().resolve("config").resolve(MODID).resolve("camerautils.properties"), builder -> CLIENT_CONFIG = new ClientConfig(builder));
     }

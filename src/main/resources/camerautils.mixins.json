@@ -8,7 +8,10 @@
   "client": [
     "MouseHandlerMixin",
     "AbstractClientPlayerMixin",
-    "GameRendererMixin"
+    "GameRendererMixin",
+    "CameraMixin",
+    "GuiMixin",
+    "CameraTypeMixin"
   ],
   "injectors": {
     "defaultRequire": 1

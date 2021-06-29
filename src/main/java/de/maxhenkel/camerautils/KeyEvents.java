@@ -2,6 +2,7 @@ package de.maxhenkel.camerautils;
 
 import de.maxhenkel.camerautils.gui.CameraScreen;
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
+import net.minecraft.client.CameraType;
 import net.minecraft.client.Minecraft;
 import net.minecraft.network.chat.TranslatableComponent;
 
@@ -20,6 +21,9 @@ public class KeyEvents {
             }
             if (CameraUtils.TOGGLE_SMOOTH_CAMERA.consumeClick()) {
                 toggleSmoothCamera();
+            }
+            if (CameraUtils.SHOULDER_CAM.consumeClick()) {
+                onShoulderCam();
             }
         });
     }
@@ -46,6 +50,15 @@ public class KeyEvents {
             mc.player.displayClientMessage(new TranslatableComponent("message.camerautils.cinematic_camera.on"), true);
         } else {
             mc.player.displayClientMessage(new TranslatableComponent("message.camerautils.cinematic_camera.off"), true);
+        }
+    }
+
+    private void onShoulderCam() {
+        boolean newValue = !CameraUtils.CLIENT_CONFIG.shoulderCam.get();
+        CameraUtils.CLIENT_CONFIG.shoulderCam.set(newValue);
+        CameraUtils.CLIENT_CONFIG.shoulderCam.save();
+        if (!newValue) {
+            mc.options.setCameraType(CameraType.FIRST_PERSON);
         }
     }
 
