@@ -1,13 +1,15 @@
 {
   "key.categories.camerautils": "Camera Utils",
-  "key.camerautils.open_gui": "Open Smooth Camera Settings",
+  "key.camerautils.open_gui": "Open Camera Settings",
   "key.camerautils.toggle_smooth_camera": "Toggle Smooth Camera",
   "key.camerautils.zoom": "Zoom",
   "key.camerautils.shoulder_cam": "Toggle Shoulder Camera",
   "message.camerautils.smooth_value": "Smoothness %s%%",
   "message.camerautils.smooth_value_off": "Smoothness OFF",
-  "gui.camerautils.gui.title": "Smooth Camera Settings",
+  "gui.camerautils.gui.title": "Camera Settings",
   "message.camerautils.cinematic_camera.on": "Smooth Camera On",
   "message.camerautils.cinematic_camera.off": "Smooth Camera Off",
-  "message.camerautils.zoom": "Zoom %s%%"
+  "message.camerautils.zoom": "Zoom %s%%",
+  "message.camerautils.zoom_setting": "Zoom Sensitivity",
+  "message.camerautils.shoulder_cam_setting": "Shoulder Cam"
 }

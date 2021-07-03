@@ -32,7 +32,7 @@ public abstract class MouseHandlerMixin {
 
     @Redirect(method = "turnPlayer", at = @At(value = "FIELD", target = "Lnet/minecraft/client/Options;smoothCamera:Z", opcode = Opcodes.GETFIELD))
     private boolean smoothCamera(Options options) {
-        return options.smoothCamera || CameraUtils.CLIENT_CONFIG.cinematicCamera.get();
+        return options.smoothCamera || (CameraUtils.CLIENT_CONFIG.cinematicCamera.get() && CameraUtils.CLIENT_CONFIG.smoothness.get() > 0D);
     }
 
     @Redirect(method = "turnPlayer", at = @At(value = "INVOKE", target = "Lnet/minecraft/util/SmoothDouble;getNewDeltaValue(DD)D"))
