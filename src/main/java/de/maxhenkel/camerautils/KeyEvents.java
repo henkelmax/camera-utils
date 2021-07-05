@@ -29,6 +29,15 @@ public class KeyEvents {
     }
 
     public boolean onScroll(double amount) {
+        if (CameraUtils.THIRD_PERSON_DISTANCE.isDown() && !mc.options.getCameraType().isFirstPerson() && !CameraUtils.CLIENT_CONFIG.shoulderCam.get()) {
+            double zoom = CameraUtils.CLIENT_CONFIG.thirdPersonDistance.get();
+            double zoomSensitivity = CameraUtils.CLIENT_CONFIG.thirdPersonDistanceSensitivity.get();
+            zoom = Math.max(0.001, Math.min(100, zoom + (-amount * zoomSensitivity)));
+            CameraUtils.CLIENT_CONFIG.thirdPersonDistance.set(zoom);
+            CameraUtils.CLIENT_CONFIG.thirdPersonDistance.save();
+            mc.player.displayClientMessage(new TranslatableComponent("message.camerautils.third_person_distance", Utils.round(zoom, 2)), true);
+            return true;
+        }
         if (CameraUtils.ZOOM.isDown()) {
             double zoom = CameraUtils.CLIENT_CONFIG.zoom.get();
             double zoomSensitivity = CameraUtils.CLIENT_CONFIG.zoomSensitivity.get();
@@ -38,7 +47,6 @@ public class KeyEvents {
             mc.player.displayClientMessage(new TranslatableComponent("message.camerautils.zoom", Math.round((1D - zoom) * 100D)), true);
             return true;
         }
-
         return false;
     }
 
