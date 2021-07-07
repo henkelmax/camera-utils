@@ -16,8 +16,10 @@ public abstract class CameraMixin {
     private void move(Camera camera, double x, double y, double z) {
         if (ClientConfig.detached) {
             //Don't move with detached cam
-        } else if (CameraUtils.CLIENT_CONFIG.shoulderCam.get()) {
-            move(CameraUtils.CLIENT_CONFIG.shoulderCamOffsetX.get(), CameraUtils.CLIENT_CONFIG.shoulderCamOffsetY.get(), CameraUtils.CLIENT_CONFIG.shoulderCamOffsetZ.get());
+        } else if (ClientConfig.thirdPersonCam == 0) {
+            move(CameraUtils.CLIENT_CONFIG.thirdPersonOffsetX1.get(), CameraUtils.CLIENT_CONFIG.thirdPersonOffsetY1.get(), CameraUtils.CLIENT_CONFIG.thirdPersonOffsetZ1.get());
+        } else if (ClientConfig.thirdPersonCam == 1) {
+            move(CameraUtils.CLIENT_CONFIG.thirdPersonOffsetX2.get(), CameraUtils.CLIENT_CONFIG.thirdPersonOffsetY2.get(), CameraUtils.CLIENT_CONFIG.thirdPersonOffsetZ2.get());
         } else if (!Minecraft.getInstance().options.getCameraType().isFirstPerson()) {
             move(-getMaxZoom(CameraUtils.CLIENT_CONFIG.thirdPersonDistance.get()), 0D, 0D);
         } else {

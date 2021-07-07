@@ -11,7 +11,8 @@
     "GameRendererMixin",
     "CameraMixin",
     "GuiMixin",
-    "CameraTypeMixin"
+    "CameraTypeMixin",
+    "SimpleOptionsSubScreenMixin"
   ],
   "injectors": {
     "defaultRequire": 1

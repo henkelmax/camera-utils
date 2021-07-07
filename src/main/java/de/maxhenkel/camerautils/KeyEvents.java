@@ -1,10 +1,13 @@
 package de.maxhenkel.camerautils;
 
 import de.maxhenkel.camerautils.config.ClientConfig;
-import de.maxhenkel.camerautils.gui.CameraScreen;
+import de.maxhenkel.camerautils.gui.ThirdPersonCameraScreen;
+import de.maxhenkel.camerautils.gui.ThirdPersonScreen;
+import de.maxhenkel.camerautils.gui.ZoomScreen;
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
 import net.minecraft.client.CameraType;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.network.chat.TranslatableComponent;
 
 public class KeyEvents {
@@ -17,14 +20,33 @@ public class KeyEvents {
             if (mc.player == null) {
                 return;
             }
-            if (CameraUtils.CAMERA_GUI.consumeClick()) {
-                mc.setScreen(new CameraScreen());
+            if (CameraUtils.ZOOM.consumeClick() && isCTRLDown()) {
+                mc.setScreen(new ZoomScreen());
             }
-            if (CameraUtils.TOGGLE_SMOOTH_CAMERA.consumeClick()) {
-                toggleSmoothCamera();
+            if (CameraUtils.THIRD_PERSON_DISTANCE.consumeClick() && isCTRLDown()) {
+                mc.setScreen(new ThirdPersonScreen());
             }
-            if (CameraUtils.SHOULDER_CAM.consumeClick()) {
-                onShoulderCam();
+            if (CameraUtils.THIRD_PERSON_CAM_1.consumeClick()) {
+                if (isCTRLDown()) {
+                    mc.setScreen(new ThirdPersonCameraScreen(0,
+                            CameraUtils.CLIENT_CONFIG.thirdPersonOffsetX1,
+                            CameraUtils.CLIENT_CONFIG.thirdPersonOffsetY1,
+                            CameraUtils.CLIENT_CONFIG.thirdPersonOffsetZ1
+                    ));
+                } else {
+                    onShoulderCam(0);
+                }
+            }
+            if (CameraUtils.THIRD_PERSON_CAM_2.consumeClick()) {
+                if (isCTRLDown()) {
+                    mc.setScreen(new ThirdPersonCameraScreen(1,
+                            CameraUtils.CLIENT_CONFIG.thirdPersonOffsetX2,
+                            CameraUtils.CLIENT_CONFIG.thirdPersonOffsetY2,
+                            CameraUtils.CLIENT_CONFIG.thirdPersonOffsetZ2
+                    ));
+                } else {
+                    onShoulderCam(1);
+                }
             }
             if (CameraUtils.DETACH_CAMERA.consumeClick()) {
                 toggleDetachCamera();
@@ -33,7 +55,7 @@ public class KeyEvents {
     }
 
     public boolean onScroll(double amount) {
-        if (CameraUtils.THIRD_PERSON_DISTANCE.isDown() && !mc.options.getCameraType().isFirstPerson() && !CameraUtils.CLIENT_CONFIG.shoulderCam.get()) {
+        if (CameraUtils.THIRD_PERSON_DISTANCE.isDown() && !mc.options.getCameraType().isFirstPerson() && CameraUtils.CLIENT_CONFIG.thirdPersonCam < 0) {
             double zoom = CameraUtils.CLIENT_CONFIG.thirdPersonDistance.get();
             double zoomSensitivity = CameraUtils.CLIENT_CONFIG.thirdPersonDistanceSensitivity.get();
             zoom = Math.max(0.001, Math.min(100, zoom + (-amount * zoomSensitivity)));
@@ -54,22 +76,13 @@ public class KeyEvents {
         return false;
     }
 
-    private void toggleSmoothCamera() {
-        boolean newValue = !CameraUtils.CLIENT_CONFIG.cinematicCamera.get();
-        CameraUtils.CLIENT_CONFIG.cinematicCamera.set(newValue);
-        CameraUtils.CLIENT_CONFIG.cinematicCamera.save();
-        if (newValue) {
-            mc.player.displayClientMessage(new TranslatableComponent("message.camerautils.cinematic_camera.on"), true);
+    private void onShoulderCam(int value) {
+        if (ClientConfig.thirdPersonCam == value) {
+            ClientConfig.thirdPersonCam = -1;
         } else {
-            mc.player.displayClientMessage(new TranslatableComponent("message.camerautils.cinematic_camera.off"), true);
+            ClientConfig.thirdPersonCam = value;
         }
-    }
-
-    private void onShoulderCam() {
-        boolean newValue = !CameraUtils.CLIENT_CONFIG.shoulderCam.get();
-        CameraUtils.CLIENT_CONFIG.shoulderCam.set(newValue);
-        CameraUtils.CLIENT_CONFIG.shoulderCam.save();
-        if (!newValue) {
+        if (ClientConfig.thirdPersonCam < 0) {
             mc.options.setCameraType(CameraType.FIRST_PERSON);
         }
     }
@@ -79,14 +92,21 @@ public class KeyEvents {
 
         if (ClientConfig.detached) {
             mc.options.setCameraType(CameraType.THIRD_PERSON_BACK);
-            ClientConfig.xRot = mc.player.getViewXRot(0F);
-            ClientConfig.yRot = mc.player.getViewYRot(0F);
-            ClientConfig.x = mc.player.getX();
-            ClientConfig.y = mc.player.getY() + mc.player.getEyeHeight(mc.player.getPose());
-            ClientConfig.z = mc.player.getZ();
+
+            if (!isCTRLDown() || Math.sqrt(mc.player.distanceToSqr(ClientConfig.x, ClientConfig.y, ClientConfig.z)) > 100F) {
+                ClientConfig.xRot = mc.player.getViewXRot(0F);
+                ClientConfig.yRot = mc.player.getViewYRot(0F);
+                ClientConfig.x = mc.player.getX();
+                ClientConfig.y = mc.player.getY() + mc.player.getEyeHeight(mc.player.getPose());
+                ClientConfig.z = mc.player.getZ();
+            }
         } else {
             mc.options.setCameraType(CameraType.FIRST_PERSON);
         }
+    }
+
+    public boolean isCTRLDown() {
+        return Screen.hasControlDown();
     }
 
 }

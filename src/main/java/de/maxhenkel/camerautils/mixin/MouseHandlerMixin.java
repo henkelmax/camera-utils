@@ -32,7 +32,7 @@ public abstract class MouseHandlerMixin {
 
     @Redirect(method = "turnPlayer", at = @At(value = "FIELD", target = "Lnet/minecraft/client/Options;smoothCamera:Z", opcode = Opcodes.GETFIELD))
     private boolean smoothCamera(Options options) {
-        return options.smoothCamera || (CameraUtils.CLIENT_CONFIG.cinematicCamera.get() && CameraUtils.CLIENT_CONFIG.smoothness.get() > 0D);
+        return options.smoothCamera || CameraUtils.CLIENT_CONFIG.smoothness.get() > 0D;
     }
 
     @Redirect(method = "turnPlayer", at = @At(value = "INVOKE", target = "Lnet/minecraft/util/SmoothDouble;getNewDeltaValue(DD)D"))
@@ -41,8 +41,8 @@ public abstract class MouseHandlerMixin {
             return smoothDouble.getNewDeltaValue(d1, d2);
         } else {
             double smoothness = CameraUtils.CLIENT_CONFIG.smoothness.get();
-            double min = CameraUtils.CLIENT_CONFIG.minSmoothSliderValue.get();
-            double max = CameraUtils.CLIENT_CONFIG.maxSmoothSliderValue.get();
+            double min = CameraUtils.CLIENT_CONFIG.minSmoothValue.get();
+            double max = CameraUtils.CLIENT_CONFIG.maxSmoothValue.get();
             if (smoothness <= 0D) {
                 return smoothDouble.getNewDeltaValue(d1, d2);
             }
