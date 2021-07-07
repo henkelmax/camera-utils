@@ -12,7 +12,13 @@ public class ClientConfig {
     public final ConfigBuilder.ConfigEntry<Boolean> cinematicCamera;
     public final ConfigBuilder.ConfigEntry<Boolean> shoulderCam;
     public final ConfigBuilder.ConfigEntry<Double> shoulderCamOffsetX;
+    public final ConfigBuilder.ConfigEntry<Double> shoulderCamOffsetY;
     public final ConfigBuilder.ConfigEntry<Double> shoulderCamOffsetZ;
+
+    // Detached Camera
+    public static boolean detached;
+    public static float xRot, yRot;
+    public static double x, y, z;
 
     public ClientConfig(ConfigBuilder builder) {
         smoothness = builder.doubleEntry("smoothness", 1D, 0D, 1D);
@@ -24,7 +30,8 @@ public class ClientConfig {
         zoomSensitivity = builder.doubleEntry("zoom_sensitivity", 0.01D, 0.001D, 1D);
         thirdPersonDistanceSensitivity = builder.doubleEntry("third_person_zoom_sensitivity", 0.1D, 0.001D, 1D);
         shoulderCam = builder.booleanEntry("shoulder_cam", false);
-        shoulderCamOffsetX = builder.doubleEntry("shoulder_cam_offset_x", -2D, -100D, 100D);
+        shoulderCamOffsetX = builder.doubleEntry("shoulder_cam_offset_x", 0D, -100D, 100D);
+        shoulderCamOffsetY = builder.doubleEntry("shoulder_cam_offset_y", 0D, -100D, 100D);
         shoulderCamOffsetZ = builder.doubleEntry("shoulder_cam_offset_z", 1D, -100D, 100D);
     }
 

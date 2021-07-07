@@ -1,5 +1,7 @@
 package de.maxhenkel.camerautils.mixin;
 
+import com.mojang.blaze3d.vertex.PoseStack;
+import de.maxhenkel.camerautils.config.ClientConfig;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.player.AbstractClientPlayer;
 import net.minecraft.client.renderer.GameRenderer;
@@ -39,6 +41,13 @@ public abstract class GameRendererMixin {
 
         if (this.fov < 0.01F) {
             this.fov = 0.01F;
+        }
+    }
+
+    @Inject(at = @At("HEAD"), method = "bobView", cancellable = true)
+    private void bobView(PoseStack poseStack, float f, CallbackInfo info) {
+        if (ClientConfig.detached) {
+            info.cancel();
         }
     }
 

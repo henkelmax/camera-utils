@@ -1,5 +1,6 @@
 package de.maxhenkel.camerautils;
 
+import de.maxhenkel.camerautils.config.ClientConfig;
 import de.maxhenkel.camerautils.gui.CameraScreen;
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
 import net.minecraft.client.CameraType;
@@ -24,6 +25,9 @@ public class KeyEvents {
             }
             if (CameraUtils.SHOULDER_CAM.consumeClick()) {
                 onShoulderCam();
+            }
+            if (CameraUtils.DETACH_CAMERA.consumeClick()) {
+                toggleDetachCamera();
             }
         });
     }
@@ -66,6 +70,21 @@ public class KeyEvents {
         CameraUtils.CLIENT_CONFIG.shoulderCam.set(newValue);
         CameraUtils.CLIENT_CONFIG.shoulderCam.save();
         if (!newValue) {
+            mc.options.setCameraType(CameraType.FIRST_PERSON);
+        }
+    }
+
+    private void toggleDetachCamera() {
+        ClientConfig.detached = !ClientConfig.detached;
+
+        if (ClientConfig.detached) {
+            mc.options.setCameraType(CameraType.THIRD_PERSON_BACK);
+            ClientConfig.xRot = mc.player.getViewXRot(0F);
+            ClientConfig.yRot = mc.player.getViewYRot(0F);
+            ClientConfig.x = mc.player.getX();
+            ClientConfig.y = mc.player.getY() + mc.player.getEyeHeight(mc.player.getPose());
+            ClientConfig.z = mc.player.getZ();
+        } else {
             mc.options.setCameraType(CameraType.FIRST_PERSON);
         }
     }

@@ -27,6 +27,7 @@ public class CameraScreen extends CameraScreenBase {
                 CameraUtils.CLIENT_CONFIG.zoomSensitivity,
                 0.01D,
                 1D,
+                0.01D,
                 value -> new TranslatableComponent("message.camerautils.zoom_slider", Utils.round(value, 2))
         ));
 
@@ -34,18 +35,28 @@ public class CameraScreen extends CameraScreenBase {
                 CameraUtils.CLIENT_CONFIG.shoulderCamOffsetX,
                 -10D,
                 0D,
+                0.1D,
                 value -> new TranslatableComponent("message.camerautils.shoulder_cam_slider_x", Utils.round(value, 2))
         ));
         addRenderableWidget(new ConfigValueSlider(guiLeft + 80 + (xSize - 100) / 2 + 10, guiTop + 7 + font.lineHeight + 10 + 25 * 2, (xSize - 100) / 2, 20,
                 CameraUtils.CLIENT_CONFIG.shoulderCamOffsetZ,
-                -3D,
-                3D,
-                value -> new TranslatableComponent("message.camerautils.shoulder_cam_slider_x", Utils.round(value, 2))
+                -5D,
+                5D,
+                0.1D,
+                value -> new TranslatableComponent("message.camerautils.shoulder_cam_slider_z", Utils.round(value, 2))
         ));
-        addRenderableWidget(new ConfigValueSlider(guiLeft + xSize / 2 + 10, guiTop + 7 + font.lineHeight + 10 + 25 * 3, xSize / 2 - 20, 20,
+        addRenderableWidget(new ConfigValueSlider(guiLeft + 80, guiTop + 7 + font.lineHeight + 10 + 25 * 3, xSize - 80 - 10, 20,
+                CameraUtils.CLIENT_CONFIG.shoulderCamOffsetY,
+                -5D,
+                5D,
+                0.1D,
+                value -> new TranslatableComponent("message.camerautils.shoulder_cam_slider_y", Utils.round(value, 2))
+        ));
+        addRenderableWidget(new ConfigValueSlider(guiLeft + xSize / 2 + 10, guiTop + 7 + font.lineHeight + 10 + 25 * 4, xSize / 2 - 20, 20,
                 CameraUtils.CLIENT_CONFIG.thirdPersonDistance,
-                0.01D,
+                0D,
                 100D,
+                0.1D,
                 value -> new TranslatableComponent("message.camerautils.third_person_distance_slider", (Utils.round(value, 2)))
         ));
     }
@@ -65,7 +76,7 @@ public class CameraScreen extends CameraScreenBase {
 
         font.draw(matrixStack, new TranslatableComponent("message.camerautils.zoom_setting").getVisualOrderText(), guiLeft + 10, guiTop + 7 + font.lineHeight + 10 + 25 + (20 - font.lineHeight) / 2F, FONT_COLOR);
         font.draw(matrixStack, new TranslatableComponent("message.camerautils.shoulder_cam_setting").getVisualOrderText(), guiLeft + 10, guiTop + 7 + font.lineHeight + 10 + 25 * 2 + (20 - font.lineHeight) / 2F, FONT_COLOR);
-        font.draw(matrixStack, new TranslatableComponent("message.camerautils.third_person_distance_setting").getVisualOrderText(), guiLeft + 10, guiTop + 7 + font.lineHeight + 10 + 25 * 3 + (20 - font.lineHeight) / 2F, FONT_COLOR);
+        font.draw(matrixStack, new TranslatableComponent("message.camerautils.third_person_distance_setting").getVisualOrderText(), guiLeft + 10, guiTop + 7 + font.lineHeight + 10 + 25 * 4 + (20 - font.lineHeight) / 2F, FONT_COLOR);
     }
 
 }
