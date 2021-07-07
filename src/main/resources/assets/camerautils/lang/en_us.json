@@ -12,10 +12,12 @@
   "message.camerautils.smooth_value_off": "Smoothness OFF",
   "message.camerautils.zoom": "Zoom %s%%",
   "message.camerautils.zoom_sensitivity_slider": "Zoom Scroll Sensitivity %s%%",
+  "message.camerautils.zoom_slider": "Zoom %s%%",
   "message.camerautils.third_person_distance_sensitivity_slider": "Scroll Sensitivity %s Blocks",
   "message.camerautils.offset_x": "X Offset: %s Blocks",
   "message.camerautils.offset_y": "Y Offset: %s Blocks",
   "message.camerautils.offset_z": "Z Offset: %s Blocks",
   "message.camerautils.third_person_distance": "Third Person Distance %s Blocks",
+  "message.camerautils.reset": "Reset",
   "options.camerautils.movement_smoothness": "Movement Smoothness"
 }

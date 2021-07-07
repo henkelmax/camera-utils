@@ -48,6 +48,10 @@ public class KeyEvents {
                     onShoulderCam(1);
                 }
             }
+            if (ClientConfig.thirdPersonCam >= 0 && mc.options.keyTogglePerspective.consumeClick()) {
+                ClientConfig.thirdPersonCam = -1;
+                mc.options.setCameraType(CameraType.THIRD_PERSON_BACK);
+            }
             if (CameraUtils.DETACH_CAMERA.consumeClick()) {
                 toggleDetachCamera();
             }
@@ -82,9 +86,9 @@ public class KeyEvents {
         } else {
             ClientConfig.thirdPersonCam = value;
         }
-        if (ClientConfig.thirdPersonCam < 0) {
-            mc.options.setCameraType(CameraType.FIRST_PERSON);
-        }
+        mc.options.setCameraType(CameraType.FIRST_PERSON);
+
+        checkPostEffect();
     }
 
     private void toggleDetachCamera() {
@@ -103,6 +107,11 @@ public class KeyEvents {
         } else {
             mc.options.setCameraType(CameraType.FIRST_PERSON);
         }
+        checkPostEffect();
+    }
+
+    public void checkPostEffect() {
+        mc.gameRenderer.checkEntityPostEffect(mc.options.getCameraType().isFirstPerson() ? mc.getCameraEntity() : null);
     }
 
     public boolean isCTRLDown() {

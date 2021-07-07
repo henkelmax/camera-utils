@@ -2,6 +2,7 @@ package de.maxhenkel.camerautils.gui;
 
 import de.maxhenkel.camerautils.CameraUtils;
 import de.maxhenkel.camerautils.Utils;
+import net.minecraft.client.gui.components.Button;
 import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.resources.ResourceLocation;
 
@@ -24,6 +25,20 @@ public class ZoomScreen extends SettingsScreenBase {
                 0.01D,
                 value -> new TranslatableComponent("message.camerautils.zoom_sensitivity_slider", Utils.round(value * 100D, 2))
         ));
+        addRenderableWidget(new ConfigValueSlider(guiLeft + 10, guiTop + 7 + font.lineHeight + 10 + 25, xSize - 20, 20,
+                CameraUtils.CLIENT_CONFIG.zoom,
+                0D,
+                1D,
+                0.01D,
+                value -> new TranslatableComponent("message.camerautils.zoom_slider", Utils.round((1D - value) * 100D, 2))
+        ));
+        addRenderableWidget(new Button(guiLeft + 10, guiTop + 7 + font.lineHeight + 10 + 25 * 2, xSize - 20, 20, new TranslatableComponent("message.camerautils.reset"), button -> {
+            CameraUtils.CLIENT_CONFIG.zoomSensitivity.reset();
+            CameraUtils.CLIENT_CONFIG.zoomSensitivity.save();
+            CameraUtils.CLIENT_CONFIG.zoom.reset();
+            CameraUtils.CLIENT_CONFIG.zoom.save();
+            minecraft.setScreen(new ZoomScreen());
+        }));
     }
 
 }

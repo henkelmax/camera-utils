@@ -24,4 +24,14 @@ public class CameraTypeMixin {
         }
     }
 
+    @Inject(method = "cycle", at = @At("HEAD"))
+    private void cycle(CallbackInfoReturnable<CameraType> ci) {
+        if (ClientConfig.detached) {
+            ClientConfig.detached = false;
+        }
+        if (ClientConfig.thirdPersonCam >= 0) {
+            ClientConfig.thirdPersonCam = -1;
+        }
+    }
+
 }
