@@ -13,9 +13,13 @@ public class ClientConfig {
     public final ConfigBuilder.ConfigEntry<Double> thirdPersonOffsetX1;
     public final ConfigBuilder.ConfigEntry<Double> thirdPersonOffsetY1;
     public final ConfigBuilder.ConfigEntry<Double> thirdPersonOffsetZ1;
+    public final ConfigBuilder.ConfigEntry<Double> thirdPersonRotationX1;
+    public final ConfigBuilder.ConfigEntry<Boolean> thirdPersonInverted1;
     public final ConfigBuilder.ConfigEntry<Double> thirdPersonOffsetX2;
     public final ConfigBuilder.ConfigEntry<Double> thirdPersonOffsetY2;
     public final ConfigBuilder.ConfigEntry<Double> thirdPersonOffsetZ2;
+    public final ConfigBuilder.ConfigEntry<Double> thirdPersonRotationX2;
+    public final ConfigBuilder.ConfigEntry<Boolean> thirdPersonInverted2;
 
     public static int thirdPersonCam = -1;
 
@@ -36,9 +40,13 @@ public class ClientConfig {
         thirdPersonOffsetX1 = builder.doubleEntry("third_person_cam_1_offset_x", -4D, -100D, 0D);
         thirdPersonOffsetY1 = builder.doubleEntry("third_person_cam_1_offset_y", 0D, -100D, 100D);
         thirdPersonOffsetZ1 = builder.doubleEntry("third_person_cam_1_offset_z", 0D, -100D, 100D);
+        thirdPersonInverted1 = builder.booleanEntry("third_person_cam_1_inverted", false);
+        thirdPersonRotationX1 = builder.doubleEntry("third_person_cam_1_rotation_x", 0D, -90D, 90D);
         thirdPersonOffsetX2 = builder.doubleEntry("third_person_cam_2_offset_x", -4D, -100D, 0D);
         thirdPersonOffsetY2 = builder.doubleEntry("third_person_cam_2_offset_y", 0D, -100D, 100D);
         thirdPersonOffsetZ2 = builder.doubleEntry("third_person_cam_2_offset_z", 0D, -100D, 100D);
+        thirdPersonInverted2 = builder.booleanEntry("third_person_cam_2_rinverted", false);
+        thirdPersonRotationX2 = builder.doubleEntry("third_person_cam_2_rotation_x", 0D, -90D, 90D);
     }
 
 }

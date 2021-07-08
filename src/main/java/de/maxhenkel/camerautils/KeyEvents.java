@@ -32,7 +32,9 @@ public class KeyEvents {
                     mc.setScreen(new ThirdPersonCameraScreen(0,
                             CameraUtils.CLIENT_CONFIG.thirdPersonOffsetX1,
                             CameraUtils.CLIENT_CONFIG.thirdPersonOffsetY1,
-                            CameraUtils.CLIENT_CONFIG.thirdPersonOffsetZ1
+                            CameraUtils.CLIENT_CONFIG.thirdPersonOffsetZ1,
+                            CameraUtils.CLIENT_CONFIG.thirdPersonRotationX1,
+                            CameraUtils.CLIENT_CONFIG.thirdPersonInverted1
                     ));
                 } else {
                     onShoulderCam(0);
@@ -43,7 +45,9 @@ public class KeyEvents {
                     mc.setScreen(new ThirdPersonCameraScreen(1,
                             CameraUtils.CLIENT_CONFIG.thirdPersonOffsetX2,
                             CameraUtils.CLIENT_CONFIG.thirdPersonOffsetY2,
-                            CameraUtils.CLIENT_CONFIG.thirdPersonOffsetZ2
+                            CameraUtils.CLIENT_CONFIG.thirdPersonOffsetZ2,
+                            CameraUtils.CLIENT_CONFIG.thirdPersonRotationX2,
+                            CameraUtils.CLIENT_CONFIG.thirdPersonInverted2
                     ));
                 } else {
                     onShoulderCam(1);

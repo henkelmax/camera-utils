@@ -14,14 +14,24 @@ public class ThirdPersonCameraScreen extends SettingsScreenBase {
     private ConfigBuilder.ConfigEntry<Double> offsetX;
     private ConfigBuilder.ConfigEntry<Double> offsetY;
     private ConfigBuilder.ConfigEntry<Double> offsetZ;
+    private ConfigBuilder.ConfigEntry<Double> rotationX;
+    private ConfigBuilder.ConfigEntry<Boolean> inverted;
     private int slot;
 
-    public ThirdPersonCameraScreen(int slot, ConfigBuilder.ConfigEntry<Double> offsetX, ConfigBuilder.ConfigEntry<Double> offsetY, ConfigBuilder.ConfigEntry<Double> offsetZ) {
+    public ThirdPersonCameraScreen(int slot,
+                                   ConfigBuilder.ConfigEntry<Double> offsetX,
+                                   ConfigBuilder.ConfigEntry<Double> offsetY,
+                                   ConfigBuilder.ConfigEntry<Double> offsetZ,
+                                   ConfigBuilder.ConfigEntry<Double> rotationX,
+                                   ConfigBuilder.ConfigEntry<Boolean> inverted
+    ) {
         super(new TranslatableComponent("gui.camerautils.third_person_camera.title", slot + 1), TEXTURE, 248, 166);
         this.slot = slot;
         this.offsetX = offsetX;
         this.offsetY = offsetY;
         this.offsetZ = offsetZ;
+        this.rotationX = rotationX;
+        this.inverted = inverted;
     }
 
     @Override
@@ -31,7 +41,7 @@ public class ThirdPersonCameraScreen extends SettingsScreenBase {
         addRenderableWidget(new ConfigValueSlider(guiLeft + 10, guiTop + 7 + font.lineHeight + 10, xSize - 20, 20,
                 offsetX,
                 -10D,
-                0D,
+                10D,
                 0.1D,
                 value -> new TranslatableComponent("message.camerautils.offset_x", Utils.round(value, 2))
         ));
@@ -49,14 +59,29 @@ public class ThirdPersonCameraScreen extends SettingsScreenBase {
                 0.1D,
                 value -> new TranslatableComponent("message.camerautils.offset_z", Utils.round(value, 2))
         ));
-        addRenderableWidget(new Button(guiLeft + 10, guiTop + 7 + font.lineHeight + 10 + 25 * 3, xSize - 20, 20, new TranslatableComponent("message.camerautils.reset"), button -> {
+        addRenderableWidget(new ConfigValueSlider(guiLeft + 10, guiTop + 7 + font.lineHeight + 10 + 25 * 3, xSize - 20, 20,
+                rotationX,
+                -180D,
+                180D,
+                1D,
+                value -> new TranslatableComponent("message.camerautils.rotation_x", value.intValue())
+        ));
+        addRenderableWidget(new ConfigValueButton(guiLeft + 10, guiTop + 7 + font.lineHeight + 10 + 25 * 4, xSize - 20, 20,
+                inverted,
+                value -> new TranslatableComponent("message.camerautils.inverted", value)
+        ));
+        addRenderableWidget(new Button(guiLeft + 10, guiTop + 7 + font.lineHeight + 10 + 25 * 5, xSize - 20, 20, new TranslatableComponent("message.camerautils.reset"), button -> {
             offsetX.reset();
             offsetX.save();
             offsetY.reset();
             offsetY.save();
             offsetZ.reset();
             offsetZ.save();
-            minecraft.setScreen(new ThirdPersonCameraScreen(slot, offsetX, offsetY, offsetZ));
+            rotationX.reset();
+            rotationX.save();
+            inverted.reset();
+            inverted.save();
+            minecraft.setScreen(new ThirdPersonCameraScreen(slot, offsetX, offsetY, offsetZ, rotationX, inverted));
         }));
     }
 
