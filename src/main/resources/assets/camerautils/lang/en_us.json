@@ -8,6 +8,7 @@
   "gui.camerautils.third_person_camera.title": "Third Person Camera Preset %s",
   "gui.camerautils.zoom.title": "Zoom",
   "gui.camerautils.third_person_distance.title": "Third Person Distance",
+  "gui.camerautils.cinematic_camera.title": "Cinematic Camera",
   "message.camerautils.smooth_value": "Smoothness %s%%",
   "message.camerautils.smooth_value_off": "Smoothness OFF",
   "message.camerautils.zoom": "Zoom %s%%",
@@ -19,5 +20,6 @@
   "message.camerautils.offset_z": "Z Offset: %s Blocks",
   "message.camerautils.third_person_distance": "Third Person Distance %s Blocks",
   "message.camerautils.reset": "Reset",
+  "message.camerautils.cinematic_camera_modifier": "Cinematic Camera Modifier %s%%",
   "options.camerautils.movement_smoothness": "Movement Smoothness"
 }

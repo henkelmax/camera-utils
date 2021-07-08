@@ -5,6 +5,7 @@ public class ClientConfig {
     public final ConfigBuilder.ConfigEntry<Double> smoothness;
     public final ConfigBuilder.ConfigEntry<Double> minSmoothValue;
     public final ConfigBuilder.ConfigEntry<Double> maxSmoothValue;
+    public final ConfigBuilder.ConfigEntry<Double> cinematicCameraModifier;
     public final ConfigBuilder.ConfigEntry<Double> zoom;
     public final ConfigBuilder.ConfigEntry<Double> zoomSensitivity;
     public final ConfigBuilder.ConfigEntry<Double> thirdPersonDistance;
@@ -27,6 +28,7 @@ public class ClientConfig {
         smoothness = builder.doubleEntry("smoothness", 0D, 0D, 1D);
         minSmoothValue = builder.doubleEntry("min_smoothness", 40D, 1D, 1000D);
         maxSmoothValue = builder.doubleEntry("max_smoothness", 100D, 1D, 1000D);
+        cinematicCameraModifier = builder.doubleEntry("cinematic_camera_modifier", 1D, 0D, 1D);
         zoom = builder.doubleEntry("zoom", 0.1D, 0.001D, 2D);
         zoomSensitivity = builder.doubleEntry("zoom_sensitivity", 0.01D, 0.001D, 1D);
         thirdPersonDistance = builder.doubleEntry("third_person_zoom", 4D, 0D, 100D);

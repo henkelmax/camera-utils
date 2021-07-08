@@ -1,6 +1,7 @@
 package de.maxhenkel.camerautils;
 
 import de.maxhenkel.camerautils.config.ClientConfig;
+import de.maxhenkel.camerautils.gui.CinematicCameraScreen;
 import de.maxhenkel.camerautils.gui.ThirdPersonCameraScreen;
 import de.maxhenkel.camerautils.gui.ThirdPersonScreen;
 import de.maxhenkel.camerautils.gui.ZoomScreen;
@@ -80,6 +81,15 @@ public class KeyEvents {
         return false;
     }
 
+    public boolean onSmoothCameraClick() {
+        if (isCTRLDown()) {
+            mc.setScreen(new CinematicCameraScreen());
+            return true;
+        }
+
+        return false;
+    }
+
     private void onShoulderCam(int value) {
         if (ClientConfig.thirdPersonCam == value) {
             ClientConfig.thirdPersonCam = -1;
@@ -114,7 +124,7 @@ public class KeyEvents {
         mc.gameRenderer.checkEntityPostEffect(mc.options.getCameraType().isFirstPerson() ? mc.getCameraEntity() : null);
     }
 
-    public boolean isCTRLDown() {
+    public static boolean isCTRLDown() {
         return Screen.hasControlDown();
     }
 

@@ -38,7 +38,7 @@ public abstract class MouseHandlerMixin {
     @Redirect(method = "turnPlayer", at = @At(value = "INVOKE", target = "Lnet/minecraft/util/SmoothDouble;getNewDeltaValue(DD)D"))
     private double getNewDeltaValue(SmoothDouble smoothDouble, double d1, double d2) {
         if (minecraft.options.smoothCamera) {
-            return smoothDouble.getNewDeltaValue(d1, d2);
+            return smoothDouble.getNewDeltaValue(d1, d2 * toValue(CameraUtils.CLIENT_CONFIG.cinematicCameraModifier.get(), 1, 100));
         } else {
             double smoothness = CameraUtils.CLIENT_CONFIG.smoothness.get();
             double min = CameraUtils.CLIENT_CONFIG.minSmoothValue.get();
