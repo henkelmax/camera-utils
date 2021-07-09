@@ -9,7 +9,7 @@ import net.minecraft.resources.ResourceLocation;
 
 public class ThirdPersonCameraScreen extends SettingsScreenBase {
 
-    private static final ResourceLocation TEXTURE = new ResourceLocation(CameraUtils.MODID, "textures/gui/gui_camera.png");
+    private static final ResourceLocation TEXTURE = new ResourceLocation(CameraUtils.MODID, "textures/gui/generic_6.png");
 
     private ConfigBuilder.ConfigEntry<Double> offsetX;
     private ConfigBuilder.ConfigEntry<Double> offsetY;
@@ -25,7 +25,7 @@ public class ThirdPersonCameraScreen extends SettingsScreenBase {
                                    ConfigBuilder.ConfigEntry<Double> rotationX,
                                    ConfigBuilder.ConfigEntry<Boolean> inverted
     ) {
-        super(new TranslatableComponent("gui.camerautils.third_person_camera.title", slot + 1), TEXTURE, 248, 166);
+        super(new TranslatableComponent("gui.camerautils.third_person_camera.title", slot + 1), TEXTURE, 248, 179);
         this.slot = slot;
         this.offsetX = offsetX;
         this.offsetY = offsetY;

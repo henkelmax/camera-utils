@@ -20,6 +20,7 @@ public class ClientConfig {
     public final ConfigBuilder.ConfigEntry<Double> thirdPersonOffsetZ2;
     public final ConfigBuilder.ConfigEntry<Double> thirdPersonRotationX2;
     public final ConfigBuilder.ConfigEntry<Boolean> thirdPersonInverted2;
+    public final ConfigBuilder.ConfigEntry<ModifierKey> modifierKey;
 
     public static int thirdPersonCam = -1;
 
@@ -47,6 +48,11 @@ public class ClientConfig {
         thirdPersonOffsetZ2 = builder.doubleEntry("third_person_cam_2_offset_z", 0D, -100D, 100D);
         thirdPersonInverted2 = builder.booleanEntry("third_person_cam_2_rinverted", false);
         thirdPersonRotationX2 = builder.doubleEntry("third_person_cam_2_rotation_x", 0D, -90D, 90D);
+        modifierKey = builder.enumEntry("modifier_key", ModifierKey.RIGHT_ALT);
+    }
+
+    public static enum ModifierKey {
+        CTRL, RIGHT_ALT
     }
 
 }

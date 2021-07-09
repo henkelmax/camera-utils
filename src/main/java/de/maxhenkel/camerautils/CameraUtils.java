@@ -30,7 +30,7 @@ public class CameraUtils implements ClientModInitializer {
     public void onInitializeClient() {
         KEY_EVENTS = new KeyEvents();
 
-        ZOOM = KeyBindingHelper.registerKeyBinding(new KeyMapping("key.camerautils.zoom", GLFW.GLFW_KEY_LEFT_ALT, "key.categories.camerautils"));
+        ZOOM = KeyBindingHelper.registerKeyBinding(new KeyMapping("key.camerautils.zoom", GLFW.GLFW_KEY_Z, "key.categories.camerautils"));
         THIRD_PERSON_CAM_1 = KeyBindingHelper.registerKeyBinding(new KeyMapping("key.camerautils.third_person_cam_1", GLFW.GLFW_KEY_F6, "key.categories.camerautils"));
         THIRD_PERSON_CAM_2 = KeyBindingHelper.registerKeyBinding(new KeyMapping("key.camerautils.third_person_cam_2", GLFW.GLFW_KEY_F7, "key.categories.camerautils"));
         THIRD_PERSON_DISTANCE = KeyBindingHelper.registerKeyBinding(new KeyMapping("key.camerautils.third_person_distance", InputConstants.UNKNOWN.getValue(), "key.categories.camerautils"));

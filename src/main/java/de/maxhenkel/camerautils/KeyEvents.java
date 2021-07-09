@@ -21,14 +21,14 @@ public class KeyEvents {
             if (mc.player == null) {
                 return;
             }
-            if (CameraUtils.ZOOM.consumeClick() && isCTRLDown()) {
+            if (CameraUtils.ZOOM.consumeClick() && isModifierDown()) {
                 mc.setScreen(new ZoomScreen());
             }
-            if (CameraUtils.THIRD_PERSON_DISTANCE.consumeClick() && isCTRLDown()) {
+            if (CameraUtils.THIRD_PERSON_DISTANCE.consumeClick() && isModifierDown()) {
                 mc.setScreen(new ThirdPersonScreen());
             }
             if (CameraUtils.THIRD_PERSON_CAM_1.consumeClick()) {
-                if (isCTRLDown()) {
+                if (isModifierDown()) {
                     mc.setScreen(new ThirdPersonCameraScreen(0,
                             CameraUtils.CLIENT_CONFIG.thirdPersonOffsetX1,
                             CameraUtils.CLIENT_CONFIG.thirdPersonOffsetY1,
@@ -41,7 +41,7 @@ public class KeyEvents {
                 }
             }
             if (CameraUtils.THIRD_PERSON_CAM_2.consumeClick()) {
-                if (isCTRLDown()) {
+                if (isModifierDown()) {
                     mc.setScreen(new ThirdPersonCameraScreen(1,
                             CameraUtils.CLIENT_CONFIG.thirdPersonOffsetX2,
                             CameraUtils.CLIENT_CONFIG.thirdPersonOffsetY2,
@@ -86,7 +86,7 @@ public class KeyEvents {
     }
 
     public boolean onSmoothCameraClick() {
-        if (isCTRLDown()) {
+        if (isModifierDown()) {
             mc.setScreen(new CinematicCameraScreen());
             return true;
         }
@@ -111,7 +111,7 @@ public class KeyEvents {
         if (ClientConfig.detached) {
             mc.options.setCameraType(CameraType.THIRD_PERSON_BACK);
 
-            if (!isCTRLDown() || Math.sqrt(mc.player.distanceToSqr(ClientConfig.x, ClientConfig.y, ClientConfig.z)) > 100F) {
+            if (!isModifierDown() || Math.sqrt(mc.player.distanceToSqr(ClientConfig.x, ClientConfig.y, ClientConfig.z)) > 100F) {
                 ClientConfig.xRot = mc.player.getViewXRot(0F);
                 ClientConfig.yRot = mc.player.getViewYRot(0F);
                 ClientConfig.x = mc.player.getX();
@@ -128,8 +128,12 @@ public class KeyEvents {
         mc.gameRenderer.checkEntityPostEffect(mc.options.getCameraType().isFirstPerson() ? mc.getCameraEntity() : null);
     }
 
-    public static boolean isCTRLDown() {
-        return Screen.hasControlDown();
+    public static boolean isModifierDown() {
+        if (CameraUtils.CLIENT_CONFIG.modifierKey.get().equals(ClientConfig.ModifierKey.CTRL)) {
+            return Screen.hasControlDown();
+        } else {
+            return Screen.hasAltDown();
+        }
     }
 
 }

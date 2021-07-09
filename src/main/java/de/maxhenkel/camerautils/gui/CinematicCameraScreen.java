@@ -7,10 +7,10 @@ import net.minecraft.resources.ResourceLocation;
 
 public class CinematicCameraScreen extends SettingsScreenBase {
 
-    private static final ResourceLocation TEXTURE = new ResourceLocation(CameraUtils.MODID, "textures/gui/gui_camera.png");
+    private static final ResourceLocation TEXTURE = new ResourceLocation(CameraUtils.MODID, "textures/gui/generic_2.png");
 
     public CinematicCameraScreen() {
-        super(new TranslatableComponent("gui.camerautils.cinematic_camera.title"), TEXTURE, 248, 166);
+        super(new TranslatableComponent("gui.camerautils.cinematic_camera.title"), TEXTURE, 248, 79);
     }
 
     @Override
