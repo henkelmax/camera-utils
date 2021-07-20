@@ -21,6 +21,7 @@ public class ClientConfig {
     public final ConfigBuilder.ConfigEntry<Double> thirdPersonRotationX2;
     public final ConfigBuilder.ConfigEntry<Boolean> thirdPersonInverted2;
     public final ConfigBuilder.ConfigEntry<ModifierKey> modifierKey;
+    public final ConfigBuilder.ConfigEntry<Double> guiOpacity;
 
     public static int thirdPersonCam = -1;
 
@@ -49,6 +50,7 @@ public class ClientConfig {
         thirdPersonInverted2 = builder.booleanEntry("third_person_cam_2_rinverted", false);
         thirdPersonRotationX2 = builder.doubleEntry("third_person_cam_2_rotation_x", 0D, -90D, 90D);
         modifierKey = builder.enumEntry("modifier_key", ModifierKey.RIGHT_ALT);
+        guiOpacity = builder.doubleEntry("gui_opacity", 1D, 0D, 1D);
     }
 
     public static enum ModifierKey {
