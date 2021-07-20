@@ -13,7 +13,8 @@
     "GuiMixin",
     "CameraTypeMixin",
     "SimpleOptionsSubScreenMixin",
-    "MinecraftMixin"
+    "MinecraftMixin",
+    "PlayerRendererMixin"
   ],
   "injectors": {
     "defaultRequire": 1

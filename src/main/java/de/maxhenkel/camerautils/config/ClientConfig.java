@@ -30,6 +30,8 @@ public class ClientConfig {
     public static float xRot, yRot;
     public static double x, y, z;
 
+    public static boolean hidePlayer;
+
     public ClientConfig(ConfigBuilder builder) {
         smoothness = builder.doubleEntry("smoothness", 0D, 0D, 1D);
         minSmoothValue = builder.doubleEntry("min_smoothness", 40D, 1D, 1000D);

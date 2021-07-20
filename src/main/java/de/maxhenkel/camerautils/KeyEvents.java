@@ -27,6 +27,14 @@ public class KeyEvents {
             if (CameraUtils.THIRD_PERSON_DISTANCE.consumeClick() && isModifierDown()) {
                 mc.setScreen(new ThirdPersonScreen());
             }
+            if (CameraUtils.HIDE_PLAYER.consumeClick()) {
+                ClientConfig.hidePlayer = !ClientConfig.hidePlayer;
+                if (ClientConfig.hidePlayer) {
+                    mc.player.displayClientMessage(new TranslatableComponent("message.camerautils.player_hidden"), true);
+                } else {
+                    mc.player.displayClientMessage(new TranslatableComponent("message.camerautils.player_unhidden"), true);
+                }
+            }
             if (CameraUtils.THIRD_PERSON_CAM_1.consumeClick()) {
                 if (isModifierDown()) {
                     mc.setScreen(new ThirdPersonCameraScreen(0,

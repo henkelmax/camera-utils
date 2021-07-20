@@ -25,6 +25,7 @@ public class CameraUtils implements ClientModInitializer {
     public static KeyMapping THIRD_PERSON_CAM_2;
     public static KeyMapping THIRD_PERSON_DISTANCE;
     public static KeyMapping DETACH_CAMERA;
+    public static KeyMapping HIDE_PLAYER;
 
     @Override
     public void onInitializeClient() {
@@ -35,6 +36,7 @@ public class CameraUtils implements ClientModInitializer {
         THIRD_PERSON_CAM_2 = KeyBindingHelper.registerKeyBinding(new KeyMapping("key.camerautils.third_person_cam_2", GLFW.GLFW_KEY_F7, "key.categories.camerautils"));
         THIRD_PERSON_DISTANCE = KeyBindingHelper.registerKeyBinding(new KeyMapping("key.camerautils.third_person_distance", InputConstants.UNKNOWN.getValue(), "key.categories.camerautils"));
         DETACH_CAMERA = KeyBindingHelper.registerKeyBinding(new KeyMapping("key.camerautils.detach_camera", InputConstants.UNKNOWN.getValue(), "key.categories.camerautils"));
+        HIDE_PLAYER = KeyBindingHelper.registerKeyBinding(new KeyMapping("key.camerautils.hide_player", InputConstants.UNKNOWN.getValue(), "key.categories.camerautils"));
         Minecraft mc = Minecraft.getInstance();
         ConfigBuilder.create(mc.gameDirectory.toPath().resolve("config").resolve(MODID).resolve("camerautils.properties"), builder -> CLIENT_CONFIG = new ClientConfig(builder));
     }
