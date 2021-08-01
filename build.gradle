@@ -1,6 +1,19 @@
+buildscript {
+    repositories {
+        maven { url = 'https://maven.maxhenkel.de/repository/public' }
+        mavenLocal()
+    }
+    dependencies {
+        classpath group: 'de.maxhenkel.forge-update', name: 'forge-update', version: '1.0.4'
+    }
+}
+
 plugins {
     id "fabric-loom" version "0.8-SNAPSHOT"
+    id "com.matthewprenger.cursegradle" version "1.4.0"
 }
+
+apply plugin: 'forge-update'
 
 sourceCompatibility = JavaVersion.VERSION_16
 targetCompatibility = JavaVersion.VERSION_16
@@ -50,4 +63,47 @@ jar {
     from("LICENSE") {
         rename { "${it}_${project.archivesBaseName}" }
     }
+}
+
+curseforge {
+    apiKey = file('curseforge_api_key.txt').exists() ? file('curseforge_api_key.txt').text : ''
+    project {
+        id = curse_id
+        changelogType = 'markdown'
+        changelog = file('changelog.md')
+        releaseType = curse_release_type
+        addGameVersion curseforge_minecraft_version
+        addGameVersion "Fabric"
+        mainArtifact(file("${project.buildDir}/libs/${archivesBaseName}-${version}.jar")) {
+            displayName = "[FABRIC][${minecraft_version}] ${mod_name} ${mod_version}"
+            relations {
+                requiredDependency 'fabric-api'
+            }
+        }
+        afterEvaluate {
+            uploadTask.dependsOn(remapJar)
+        }
+    }
+    options {
+        forgeGradleIntegration = false
+    }
+}
+
+forgeUpdate {
+    def messages = []
+    file('changelog.md').eachLine { String line ->
+        if (line.trim().startsWith('-')) {
+            messages.add(line.replaceFirst('-', '').trim())
+        }
+    }
+
+    serverURL = 'https://update.maxhenkel.de/'
+    apiKey = file('forge_update_api_key.txt').exists() ? file('forge_update_api_key.txt').text : ''
+    modID = mod_id
+    gameVersion = minecraft_version
+    modLoader = "fabric"
+    modVersion = mod_version
+    updateMessages = messages
+    releaseType = curse_release_type
+    tags = recommended == 'true' ? ['recommended'] : []
 }
