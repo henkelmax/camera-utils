@@ -11,6 +11,8 @@
 
 ---
 
+Camera Utils is a client side Fabric mod that adds convenient features related to the players camera.
+
 # Features
 
 - Dynamic zoom
@@ -57,3 +59,11 @@ By pressing `RIGHT ALT` and the cinematic camera button, you can adjust the prop
 
 This option is located in the accessibility settings.
 It smoothens the players camera movement to potentially avoid motion sickness.
+
+## Additional Information
+
+Pressing any key related to the camera utils mod in combination with `RIGHT ALT`
+will open a settings GUI which allows you to change properties
+or to reset them back to their default values.
+
+Note that this mod is **not compatible with OptiFine**.
