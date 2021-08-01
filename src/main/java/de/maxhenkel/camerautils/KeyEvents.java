@@ -22,10 +22,10 @@ public class KeyEvents {
                 return;
             }
             if (CameraUtils.ZOOM.consumeClick() && isModifierDown()) {
-                mc.setScreen(new ZoomScreen());
+                openZoomSettings();
             }
             if (CameraUtils.THIRD_PERSON_DISTANCE.consumeClick() && isModifierDown()) {
-                mc.setScreen(new ThirdPersonScreen());
+                openThirdPersonSettings();
             }
             if (CameraUtils.HIDE_PLAYER.consumeClick()) {
                 ClientConfig.hidePlayer = !ClientConfig.hidePlayer;
@@ -37,26 +37,14 @@ public class KeyEvents {
             }
             if (CameraUtils.THIRD_PERSON_CAM_1.consumeClick()) {
                 if (isModifierDown()) {
-                    mc.setScreen(new ThirdPersonCameraScreen(0,
-                            CameraUtils.CLIENT_CONFIG.thirdPersonOffsetX1,
-                            CameraUtils.CLIENT_CONFIG.thirdPersonOffsetY1,
-                            CameraUtils.CLIENT_CONFIG.thirdPersonOffsetZ1,
-                            CameraUtils.CLIENT_CONFIG.thirdPersonRotationX1,
-                            CameraUtils.CLIENT_CONFIG.thirdPersonInverted1
-                    ));
+                    openThirdPerson1Settings();
                 } else {
                     onShoulderCam(0);
                 }
             }
             if (CameraUtils.THIRD_PERSON_CAM_2.consumeClick()) {
                 if (isModifierDown()) {
-                    mc.setScreen(new ThirdPersonCameraScreen(1,
-                            CameraUtils.CLIENT_CONFIG.thirdPersonOffsetX2,
-                            CameraUtils.CLIENT_CONFIG.thirdPersonOffsetY2,
-                            CameraUtils.CLIENT_CONFIG.thirdPersonOffsetZ2,
-                            CameraUtils.CLIENT_CONFIG.thirdPersonRotationX2,
-                            CameraUtils.CLIENT_CONFIG.thirdPersonInverted2
-                    ));
+                    openThirdPerson2Settings();
                 } else {
                     onShoulderCam(1);
                 }
@@ -67,6 +55,22 @@ public class KeyEvents {
             }
             if (CameraUtils.DETACH_CAMERA.consumeClick()) {
                 toggleDetachCamera();
+            }
+
+            if (CameraUtils.CINEMATIC_CAMERA_GUI.consumeClick()) {
+                openCinematicCameraSettings();
+            }
+            if (CameraUtils.THIRD_PERSON_CAMERA_1_GUI.consumeClick()) {
+                openThirdPerson1Settings();
+            }
+            if (CameraUtils.THIRD_PERSON_CAMERA_2_GUI.consumeClick()) {
+                openThirdPerson2Settings();
+            }
+            if (CameraUtils.THIRD_PERSON_GUI.consumeClick()) {
+                openThirdPersonSettings();
+            }
+            if (CameraUtils.ZOOM_GUI.consumeClick()) {
+                openZoomSettings();
             }
         });
     }
@@ -95,7 +99,7 @@ public class KeyEvents {
 
     public boolean onSmoothCameraClick() {
         if (isModifierDown()) {
-            mc.setScreen(new CinematicCameraScreen());
+            openCinematicCameraSettings();
             return true;
         }
 
@@ -134,6 +138,38 @@ public class KeyEvents {
 
     public void checkPostEffect() {
         mc.gameRenderer.checkEntityPostEffect(mc.options.getCameraType().isFirstPerson() ? mc.getCameraEntity() : null);
+    }
+
+    public void openCinematicCameraSettings() {
+        mc.setScreen(new CinematicCameraScreen());
+    }
+
+    public void openThirdPerson1Settings() {
+        mc.setScreen(new ThirdPersonCameraScreen(0,
+                CameraUtils.CLIENT_CONFIG.thirdPersonOffsetX1,
+                CameraUtils.CLIENT_CONFIG.thirdPersonOffsetY1,
+                CameraUtils.CLIENT_CONFIG.thirdPersonOffsetZ1,
+                CameraUtils.CLIENT_CONFIG.thirdPersonRotationX1,
+                CameraUtils.CLIENT_CONFIG.thirdPersonInverted1
+        ));
+    }
+
+    public void openThirdPerson2Settings() {
+        mc.setScreen(new ThirdPersonCameraScreen(1,
+                CameraUtils.CLIENT_CONFIG.thirdPersonOffsetX2,
+                CameraUtils.CLIENT_CONFIG.thirdPersonOffsetY2,
+                CameraUtils.CLIENT_CONFIG.thirdPersonOffsetZ2,
+                CameraUtils.CLIENT_CONFIG.thirdPersonRotationX2,
+                CameraUtils.CLIENT_CONFIG.thirdPersonInverted2
+        ));
+    }
+
+    public void openThirdPersonSettings() {
+        mc.setScreen(new ThirdPersonScreen());
+    }
+
+    public void openZoomSettings() {
+        mc.setScreen(new ZoomScreen());
     }
 
     public static boolean isModifierDown() {
