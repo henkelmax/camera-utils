@@ -8,7 +8,9 @@
     "Max Henkel"
   ],
   "contact": {
-    "website": "https://modrepo.de"
+    "homepage": "https://modrepo.de/minecraft/camerautils/overview",
+    "sources": "https://github.com/henkelmax/camera-utils",
+    "issues": "https://github.com/henkelmax/camera-utils/issues"
   },
   "license": "All Rights Reserved",
   "environment": "client",
@@ -25,5 +27,8 @@
     "fabric": ">=${fabric_version}",
     "minecraft": "${minecraft_dependency}",
     "java": ">=16"
+  },
+  "conflicts": {
+    "optifabric": "*"
   }
 }
