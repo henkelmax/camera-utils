@@ -7,13 +7,13 @@ import net.minecraft.network.chat.TextComponent;
 
 import java.util.function.Function;
 
-public class ConfigValueSlider extends AbstractSliderButton {
+public class DoubleConfigValueSlider extends AbstractSliderButton {
 
     private ConfigBuilder.ConfigEntry<Double> entry;
     private double min, max, interval;
     private Function<Double, Component> text;
 
-    public ConfigValueSlider(int x, int y, int width, int height, ConfigBuilder.ConfigEntry<Double> entry, double min, double max, double interval, Function<Double, Component> text) {
+    public DoubleConfigValueSlider(int x, int y, int width, int height, ConfigBuilder.ConfigEntry<Double> entry, double min, double max, double interval, Function<Double, Component> text) {
         super(x, y, width, height, TextComponent.EMPTY, getPercentage(min, max, entry.get()));
         this.entry = entry;
         this.min = min;

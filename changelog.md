@@ -1,1 +1,1 @@
-- Updated fabric.mod.json
+- Added zoom animation

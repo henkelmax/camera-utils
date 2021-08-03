@@ -18,14 +18,14 @@ public class ZoomScreen extends SettingsScreenBase {
     protected void init() {
         super.init();
 
-        addRenderableWidget(new ConfigValueSlider(guiLeft + 10, guiTop + 7 + font.lineHeight + 10, xSize - 20, 20,
+        addRenderableWidget(new DoubleConfigValueSlider(guiLeft + 10, guiTop + 7 + font.lineHeight + 10, xSize - 20, 20,
                 CameraUtils.CLIENT_CONFIG.zoomSensitivity,
                 0.01D,
                 0.25D,
                 0.01D,
                 value -> new TranslatableComponent("message.camerautils.zoom_sensitivity_slider", Utils.round(value * 100D, 2))
         ));
-        addRenderableWidget(new ConfigValueSlider(guiLeft + 10, guiTop + 7 + font.lineHeight + 10 + 25, xSize - 20, 20,
+        addRenderableWidget(new DoubleConfigValueSlider(guiLeft + 10, guiTop + 7 + font.lineHeight + 10 + 25, xSize - 20, 20,
                 CameraUtils.CLIENT_CONFIG.zoom,
                 0D,
                 1D,

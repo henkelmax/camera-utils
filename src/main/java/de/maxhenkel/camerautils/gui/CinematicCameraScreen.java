@@ -17,7 +17,7 @@ public class CinematicCameraScreen extends SettingsScreenBase {
     protected void init() {
         super.init();
 
-        addRenderableWidget(new ConfigValueSlider(guiLeft + 10, guiTop + 7 + font.lineHeight + 10, xSize - 20, 20,
+        addRenderableWidget(new DoubleConfigValueSlider(guiLeft + 10, guiTop + 7 + font.lineHeight + 10, xSize - 20, 20,
                 CameraUtils.CLIENT_CONFIG.cinematicCameraModifier,
                 0D,
                 1D,

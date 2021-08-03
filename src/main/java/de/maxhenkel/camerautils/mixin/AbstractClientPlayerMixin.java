@@ -12,7 +12,11 @@ public abstract class AbstractClientPlayerMixin {
 
     @Inject(at = @At("RETURN"), method = "getFieldOfViewModifier", cancellable = true)
     private void getFieldOfViewModifier(CallbackInfoReturnable<Float> info) {
-        info.setReturnValue(info.getReturnValue() * (CameraUtils.ZOOM.isDown() ? CameraUtils.CLIENT_CONFIG.zoom.get().floatValue() : 1F));
+        if (CameraUtils.ZOOM_TRACK != null) {
+            info.setReturnValue(CameraUtils.ZOOM_TRACK.getCurrentFOV());
+        } else {
+            info.setReturnValue(info.getReturnValue() * (CameraUtils.ZOOM.isDown() ? CameraUtils.CLIENT_CONFIG.zoom.get().floatValue() : 1F));
+        }
     }
 
 }

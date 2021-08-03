@@ -18,14 +18,14 @@ public class ThirdPersonScreen extends SettingsScreenBase {
     protected void init() {
         super.init();
 
-        addRenderableWidget(new ConfigValueSlider(guiLeft + 10, guiTop + 7 + font.lineHeight + 10, xSize - 20, 20,
+        addRenderableWidget(new DoubleConfigValueSlider(guiLeft + 10, guiTop + 7 + font.lineHeight + 10, xSize - 20, 20,
                 CameraUtils.CLIENT_CONFIG.thirdPersonDistanceSensitivity,
                 0.1D,
                 1D,
                 0.1D,
                 value -> new TranslatableComponent("message.camerautils.third_person_distance_sensitivity_slider", Utils.round(value, 2))
         ));
-        addRenderableWidget(new ConfigValueSlider(guiLeft + 10, guiTop + 7 + font.lineHeight + 10 + 25, xSize - 20, 20,
+        addRenderableWidget(new DoubleConfigValueSlider(guiLeft + 10, guiTop + 7 + font.lineHeight + 10 + 25, xSize - 20, 20,
                 CameraUtils.CLIENT_CONFIG.thirdPersonDistance,
                 0D,
                 100D,

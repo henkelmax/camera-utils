@@ -1,6 +1,7 @@
 package de.maxhenkel.camerautils.mixin;
 
 import com.mojang.blaze3d.vertex.PoseStack;
+import de.maxhenkel.camerautils.CameraUtils;
 import de.maxhenkel.camerautils.config.ClientConfig;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.player.AbstractClientPlayer;
@@ -25,8 +26,12 @@ public abstract class GameRendererMixin {
     private float oldFov;
 
     @Inject(at = @At("HEAD"), method = "tickFov", cancellable = true)
-    private void getFieldOfViewModifier(CallbackInfo info) {
+    private void tickFov(CallbackInfo info) {
         info.cancel();
+        if (CameraUtils.ZOOM_TRACK != null) {
+            CameraUtils.ZOOM_TRACK.tick();
+        }
+
         float newFOV = 1F;
         if (minecraft.getCameraEntity() instanceof AbstractClientPlayer) {
             AbstractClientPlayer abstractClientPlayer = (AbstractClientPlayer) minecraft.getCameraEntity();
@@ -35,12 +40,12 @@ public abstract class GameRendererMixin {
 
         oldFov = fov;
         fov += (newFOV - fov) * 0.5F;
-        if (this.fov > 2F) {
-            this.fov = 2F;
+        if (fov > 2F) {
+            fov = 2F;
         }
 
-        if (this.fov < 0.01F) {
-            this.fov = 0.01F;
+        if (fov < 0.01F) {
+            fov = 0.01F;
         }
     }
 

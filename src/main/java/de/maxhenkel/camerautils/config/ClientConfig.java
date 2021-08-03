@@ -22,6 +22,9 @@ public class ClientConfig {
     public final ConfigBuilder.ConfigEntry<Boolean> thirdPersonInverted2;
     public final ConfigBuilder.ConfigEntry<ModifierKey> modifierKey;
     public final ConfigBuilder.ConfigEntry<Double> guiOpacity;
+    public final ConfigBuilder.ConfigEntry<Double> zoomAnimationFrom;
+    public final ConfigBuilder.ConfigEntry<Double> zoomAnimationTo;
+    public final ConfigBuilder.ConfigEntry<Integer> zoomAnimationDuration;
 
     public static int thirdPersonCam = -1;
 
@@ -53,6 +56,9 @@ public class ClientConfig {
         thirdPersonRotationX2 = builder.doubleEntry("third_person_cam_2_rotation_x", 0D, -90D, 90D);
         modifierKey = builder.enumEntry("modifier_key", ModifierKey.RIGHT_ALT);
         guiOpacity = builder.doubleEntry("gui_opacity", 1D, 0D, 1D);
+        zoomAnimationFrom = builder.doubleEntry("zoom_animation_from", 1D, 0.01D, 2D);
+        zoomAnimationTo = builder.doubleEntry("zoom_animation_to", 0.1D, 0.01D, 2D);
+        zoomAnimationDuration = builder.integerEntry("zoom_animation_duration", 200, 1, Integer.MAX_VALUE);
     }
 
     public static enum ModifierKey {

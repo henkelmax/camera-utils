@@ -1,10 +1,7 @@
 package de.maxhenkel.camerautils;
 
 import de.maxhenkel.camerautils.config.ClientConfig;
-import de.maxhenkel.camerautils.gui.CinematicCameraScreen;
-import de.maxhenkel.camerautils.gui.ThirdPersonCameraScreen;
-import de.maxhenkel.camerautils.gui.ThirdPersonScreen;
-import de.maxhenkel.camerautils.gui.ZoomScreen;
+import de.maxhenkel.camerautils.gui.*;
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
 import net.minecraft.client.CameraType;
 import net.minecraft.client.Minecraft;
@@ -56,6 +53,17 @@ public class KeyEvents {
             if (CameraUtils.DETACH_CAMERA.consumeClick()) {
                 toggleDetachCamera();
             }
+            if (CameraUtils.ZOOM_ANIMATION.consumeClick()) {
+                if (isModifierDown()) {
+                    openZoomAnimationSettings();
+                } else {
+                    if (CameraUtils.ZOOM_TRACK == null) {
+                        CameraUtils.ZOOM_TRACK = new ZoomTrack(CameraUtils.CLIENT_CONFIG.zoomAnimationFrom.get().floatValue(), CameraUtils.CLIENT_CONFIG.zoomAnimationTo.get().floatValue(), CameraUtils.CLIENT_CONFIG.zoomAnimationDuration.get());
+                    } else {
+                        CameraUtils.ZOOM_TRACK = null;
+                    }
+                }
+            }
 
             if (CameraUtils.CINEMATIC_CAMERA_GUI.consumeClick()) {
                 openCinematicCameraSettings();
@@ -71,6 +79,9 @@ public class KeyEvents {
             }
             if (CameraUtils.ZOOM_GUI.consumeClick()) {
                 openZoomSettings();
+            }
+            if (CameraUtils.ZOOM_ANIMATION_GUI.consumeClick()) {
+                openZoomAnimationSettings();
             }
         });
     }
@@ -170,6 +181,10 @@ public class KeyEvents {
 
     public void openZoomSettings() {
         mc.setScreen(new ZoomScreen());
+    }
+
+    public void openZoomAnimationSettings() {
+        mc.setScreen(new ZoomAnimationScreen());
     }
 
     public static boolean isModifierDown() {
