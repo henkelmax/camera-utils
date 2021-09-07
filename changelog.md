@@ -1,1 +1,1 @@
-- Added zoom animation
+- Added hide GUI option to custom third person view

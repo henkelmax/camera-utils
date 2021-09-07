@@ -15,11 +15,13 @@ public class ClientConfig {
     public final ConfigBuilder.ConfigEntry<Double> thirdPersonOffsetZ1;
     public final ConfigBuilder.ConfigEntry<Double> thirdPersonRotationX1;
     public final ConfigBuilder.ConfigEntry<Boolean> thirdPersonInverted1;
+    public final ConfigBuilder.ConfigEntry<Boolean> thirdPersonHideGui1;
     public final ConfigBuilder.ConfigEntry<Double> thirdPersonOffsetX2;
     public final ConfigBuilder.ConfigEntry<Double> thirdPersonOffsetY2;
     public final ConfigBuilder.ConfigEntry<Double> thirdPersonOffsetZ2;
     public final ConfigBuilder.ConfigEntry<Double> thirdPersonRotationX2;
     public final ConfigBuilder.ConfigEntry<Boolean> thirdPersonInverted2;
+    public final ConfigBuilder.ConfigEntry<Boolean> thirdPersonHideGui2;
     public final ConfigBuilder.ConfigEntry<ModifierKey> modifierKey;
     public final ConfigBuilder.ConfigEntry<Double> guiOpacity;
     public final ConfigBuilder.ConfigEntry<Double> zoomAnimationFrom;
@@ -48,11 +50,13 @@ public class ClientConfig {
         thirdPersonOffsetY1 = builder.doubleEntry("third_person_cam_1_offset_y", 0D, -100D, 100D);
         thirdPersonOffsetZ1 = builder.doubleEntry("third_person_cam_1_offset_z", 0D, -100D, 100D);
         thirdPersonInverted1 = builder.booleanEntry("third_person_cam_1_inverted", false);
+        thirdPersonHideGui1 = builder.booleanEntry("third_person_cam_1_hide_gui", false);
         thirdPersonRotationX1 = builder.doubleEntry("third_person_cam_1_rotation_x", 0D, -90D, 90D);
         thirdPersonOffsetX2 = builder.doubleEntry("third_person_cam_2_offset_x", -4D, -100D, 0D);
         thirdPersonOffsetY2 = builder.doubleEntry("third_person_cam_2_offset_y", 0D, -100D, 100D);
         thirdPersonOffsetZ2 = builder.doubleEntry("third_person_cam_2_offset_z", 0D, -100D, 100D);
-        thirdPersonInverted2 = builder.booleanEntry("third_person_cam_2_rinverted", false);
+        thirdPersonInverted2 = builder.booleanEntry("third_person_cam_2_inverted", false);
+        thirdPersonHideGui2 = builder.booleanEntry("third_person_cam_2_hide_gui", false);
         thirdPersonRotationX2 = builder.doubleEntry("third_person_cam_2_rotation_x", 0D, -90D, 90D);
         modifierKey = builder.enumEntry("modifier_key", ModifierKey.RIGHT_ALT);
         guiOpacity = builder.doubleEntry("gui_opacity", 1D, 0D, 1D);

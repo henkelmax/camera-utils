@@ -120,8 +120,26 @@ public class KeyEvents {
     private void onShoulderCam(int value) {
         if (ClientConfig.thirdPersonCam == value) {
             ClientConfig.thirdPersonCam = -1;
+            if (value == 0) {
+                if (CameraUtils.CLIENT_CONFIG.thirdPersonHideGui1.get()) {
+                    mc.options.hideGui = false;
+                }
+            } else if (value == 1) {
+                if (CameraUtils.CLIENT_CONFIG.thirdPersonHideGui2.get()) {
+                    mc.options.hideGui = false;
+                }
+            }
         } else {
             ClientConfig.thirdPersonCam = value;
+            if (value == 0) {
+                if (CameraUtils.CLIENT_CONFIG.thirdPersonHideGui1.get()) {
+                    mc.options.hideGui = true;
+                }
+            } else if (value == 1) {
+                if (CameraUtils.CLIENT_CONFIG.thirdPersonHideGui2.get()) {
+                    mc.options.hideGui = true;
+                }
+            }
         }
         mc.options.setCameraType(CameraType.FIRST_PERSON);
 
@@ -161,7 +179,8 @@ public class KeyEvents {
                 CameraUtils.CLIENT_CONFIG.thirdPersonOffsetY1,
                 CameraUtils.CLIENT_CONFIG.thirdPersonOffsetZ1,
                 CameraUtils.CLIENT_CONFIG.thirdPersonRotationX1,
-                CameraUtils.CLIENT_CONFIG.thirdPersonInverted1
+                CameraUtils.CLIENT_CONFIG.thirdPersonInverted1,
+                CameraUtils.CLIENT_CONFIG.thirdPersonHideGui1
         ));
     }
 
@@ -171,7 +190,8 @@ public class KeyEvents {
                 CameraUtils.CLIENT_CONFIG.thirdPersonOffsetY2,
                 CameraUtils.CLIENT_CONFIG.thirdPersonOffsetZ2,
                 CameraUtils.CLIENT_CONFIG.thirdPersonRotationX2,
-                CameraUtils.CLIENT_CONFIG.thirdPersonInverted2
+                CameraUtils.CLIENT_CONFIG.thirdPersonInverted2,
+                CameraUtils.CLIENT_CONFIG.thirdPersonHideGui2
         ));
     }
 
