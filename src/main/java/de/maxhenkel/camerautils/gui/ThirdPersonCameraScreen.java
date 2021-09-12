@@ -2,7 +2,7 @@ package de.maxhenkel.camerautils.gui;
 
 import de.maxhenkel.camerautils.CameraUtils;
 import de.maxhenkel.camerautils.Utils;
-import de.maxhenkel.camerautils.config.ConfigBuilder;
+import de.maxhenkel.configbuilder.ConfigBuilder;
 import net.minecraft.client.gui.components.Button;
 import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.resources.ResourceLocation;
@@ -78,18 +78,12 @@ public class ThirdPersonCameraScreen extends SettingsScreenBase {
                 value -> new TranslatableComponent("message.camerautils.hide_gui", value)
         ));
         addRenderableWidget(new Button(guiLeft + 10, guiTop + 7 + font.lineHeight + 10 + 25 * 6, xSize - 20, 20, new TranslatableComponent("message.camerautils.reset"), button -> {
-            offsetX.reset();
-            offsetX.save();
-            offsetY.reset();
-            offsetY.save();
-            offsetZ.reset();
-            offsetZ.save();
-            rotationX.reset();
-            rotationX.save();
-            inverted.reset();
-            inverted.save();
-            hideGui.reset();
-            hideGui.save();
+            offsetX.reset().save();
+            offsetY.reset().save();
+            offsetZ.reset().save();
+            rotationX.reset().save();
+            inverted.reset().save();
+            hideGui.reset().save();
             minecraft.setScreen(new ThirdPersonCameraScreen(slot, offsetX, offsetY, offsetZ, rotationX, inverted, hideGui));
         }));
     }

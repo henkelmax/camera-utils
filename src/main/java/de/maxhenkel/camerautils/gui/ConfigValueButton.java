@@ -1,6 +1,6 @@
 package de.maxhenkel.camerautils.gui;
 
-import de.maxhenkel.camerautils.config.ConfigBuilder;
+import de.maxhenkel.configbuilder.ConfigBuilder;
 import net.minecraft.client.gui.components.AbstractButton;
 import net.minecraft.client.gui.narration.NarrationElementOutput;
 import net.minecraft.network.chat.Component;
@@ -26,8 +26,7 @@ public class ConfigValueButton extends AbstractButton {
 
     @Override
     public void onPress() {
-        entry.set(!entry.get());
-        entry.save();
+        entry.set(!entry.get()).save();
         updateText();
     }
 

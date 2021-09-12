@@ -11,6 +11,7 @@ buildscript {
 plugins {
     id "fabric-loom" version "0.8-SNAPSHOT"
     id "com.matthewprenger.cursegradle" version "1.4.0"
+    id "com.github.johnrengelman.shadow" version "7.0.0"
 }
 
 apply plugin: 'forge-update'
@@ -39,6 +40,9 @@ dependencies {
     modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
 
     implementation 'com.google.code.findbugs:jsr305:3.0.2'
+
+    implementation 'de.maxhenkel.configbuilder:configbuilder:1.0.0'
+    shadow 'de.maxhenkel.configbuilder:configbuilder:1.0.0'
 }
 
 processResources {
@@ -106,4 +110,15 @@ forgeUpdate {
     updateMessages = messages
     releaseType = curse_release_type
     tags = recommended == 'true' ? ['recommended'] : []
+}
+
+shadowJar {
+    configurations = [project.configurations.shadow]
+    classifier 'shadow-dev'
+    relocate 'de.maxhenkel.configbuilder', "de.maxhenkel.${mod_id}.configbuilder"
+}
+
+remapJar {
+    dependsOn shadowJar
+    input.set shadowJar.archiveFile.get()
 }

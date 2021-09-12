@@ -1,6 +1,6 @@
 package de.maxhenkel.camerautils.gui;
 
-import de.maxhenkel.camerautils.config.ConfigBuilder;
+import de.maxhenkel.configbuilder.ConfigBuilder;
 import net.minecraft.client.gui.components.AbstractSliderButton;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.TextComponent;
@@ -33,8 +33,7 @@ public class IntegerConfigValueSlider extends AbstractSliderButton {
 
     @Override
     protected void applyValue() {
-        entry.set(getValue(min, max, value));
-        entry.save();
+        entry.set(getValue(min, max, value)).save();
     }
 
     private static double getPercentage(int min, int max, int value) {

@@ -2,7 +2,7 @@ package de.maxhenkel.camerautils;
 
 import com.mojang.blaze3d.platform.InputConstants;
 import de.maxhenkel.camerautils.config.ClientConfig;
-import de.maxhenkel.camerautils.config.ConfigBuilder;
+import de.maxhenkel.configbuilder.ConfigBuilder;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;

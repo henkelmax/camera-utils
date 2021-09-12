@@ -1,5 +1,7 @@
 package de.maxhenkel.camerautils.config;
 
+import de.maxhenkel.configbuilder.ConfigBuilder;
+
 public class ClientConfig {
 
     public final ConfigBuilder.ConfigEntry<Double> smoothness;
