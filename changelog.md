@@ -1,1 +1,1 @@
-- Added hide GUI option to custom third person view
+- Fixed X offset not saving when greater than 0

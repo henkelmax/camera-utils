@@ -48,13 +48,13 @@ public class ClientConfig {
         zoomSensitivity = builder.doubleEntry("zoom_sensitivity", 0.01D, 0.001D, 1D);
         thirdPersonDistance = builder.doubleEntry("third_person_zoom", 4D, 0D, 100D);
         thirdPersonDistanceSensitivity = builder.doubleEntry("third_person_zoom_sensitivity", 0.1D, 0.001D, 1D);
-        thirdPersonOffsetX1 = builder.doubleEntry("third_person_cam_1_offset_x", -4D, -100D, 0D);
+        thirdPersonOffsetX1 = builder.doubleEntry("third_person_cam_1_offset_x", -4D, -100D, 100D);
         thirdPersonOffsetY1 = builder.doubleEntry("third_person_cam_1_offset_y", 0D, -100D, 100D);
         thirdPersonOffsetZ1 = builder.doubleEntry("third_person_cam_1_offset_z", 0D, -100D, 100D);
         thirdPersonInverted1 = builder.booleanEntry("third_person_cam_1_inverted", false);
         thirdPersonHideGui1 = builder.booleanEntry("third_person_cam_1_hide_gui", false);
         thirdPersonRotationX1 = builder.doubleEntry("third_person_cam_1_rotation_x", 0D, -90D, 90D);
-        thirdPersonOffsetX2 = builder.doubleEntry("third_person_cam_2_offset_x", -4D, -100D, 0D);
+        thirdPersonOffsetX2 = builder.doubleEntry("third_person_cam_2_offset_x", -4D, -100D, 100D);
         thirdPersonOffsetY2 = builder.doubleEntry("third_person_cam_2_offset_y", 0D, -100D, 100D);
         thirdPersonOffsetZ2 = builder.doubleEntry("third_person_cam_2_offset_z", 0D, -100D, 100D);
         thirdPersonInverted2 = builder.booleanEntry("third_person_cam_2_inverted", false);
