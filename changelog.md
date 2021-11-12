@@ -1,1 +1,1 @@
-- Fixed X offset not saving when greater than 0
+- Updated to 1.18-pre1
