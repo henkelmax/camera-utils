@@ -1,6 +1,6 @@
 package de.maxhenkel.camerautils.gui;
 
-import de.maxhenkel.configbuilder.ConfigBuilder;
+import de.maxhenkel.configbuilder.ConfigEntry;
 import net.minecraft.client.gui.components.AbstractButton;
 import net.minecraft.client.gui.narration.NarrationElementOutput;
 import net.minecraft.network.chat.Component;
@@ -10,10 +10,10 @@ import java.util.function.Function;
 
 public class ConfigValueButton extends AbstractButton {
 
-    private ConfigBuilder.ConfigEntry<Boolean> entry;
+    private ConfigEntry<Boolean> entry;
     private Function<Boolean, Component> component;
 
-    public ConfigValueButton(int i, int j, int k, int l, ConfigBuilder.ConfigEntry<Boolean> entry, Function<Boolean, Component> component) {
+    public ConfigValueButton(int i, int j, int k, int l, ConfigEntry<Boolean> entry, Function<Boolean, Component> component) {
         super(i, j, k, l, TextComponent.EMPTY);
         this.entry = entry;
         this.component = component;

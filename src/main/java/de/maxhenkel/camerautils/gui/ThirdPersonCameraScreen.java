@@ -2,7 +2,7 @@ package de.maxhenkel.camerautils.gui;
 
 import de.maxhenkel.camerautils.CameraUtils;
 import de.maxhenkel.camerautils.Utils;
-import de.maxhenkel.configbuilder.ConfigBuilder;
+import de.maxhenkel.configbuilder.ConfigEntry;
 import net.minecraft.client.gui.components.Button;
 import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.resources.ResourceLocation;
@@ -11,21 +11,21 @@ public class ThirdPersonCameraScreen extends SettingsScreenBase {
 
     private static final ResourceLocation TEXTURE = new ResourceLocation(CameraUtils.MODID, "textures/gui/generic_7.png");
 
-    private ConfigBuilder.ConfigEntry<Double> offsetX;
-    private ConfigBuilder.ConfigEntry<Double> offsetY;
-    private ConfigBuilder.ConfigEntry<Double> offsetZ;
-    private ConfigBuilder.ConfigEntry<Double> rotationX;
-    private ConfigBuilder.ConfigEntry<Boolean> inverted;
-    private ConfigBuilder.ConfigEntry<Boolean> hideGui;
+    private ConfigEntry<Double> offsetX;
+    private ConfigEntry<Double> offsetY;
+    private ConfigEntry<Double> offsetZ;
+    private ConfigEntry<Double> rotationX;
+    private ConfigEntry<Boolean> inverted;
+    private ConfigEntry<Boolean> hideGui;
     private int slot;
 
     public ThirdPersonCameraScreen(int slot,
-                                   ConfigBuilder.ConfigEntry<Double> offsetX,
-                                   ConfigBuilder.ConfigEntry<Double> offsetY,
-                                   ConfigBuilder.ConfigEntry<Double> offsetZ,
-                                   ConfigBuilder.ConfigEntry<Double> rotationX,
-                                   ConfigBuilder.ConfigEntry<Boolean> inverted,
-                                   ConfigBuilder.ConfigEntry<Boolean> hideGui
+                                   ConfigEntry<Double> offsetX,
+                                   ConfigEntry<Double> offsetY,
+                                   ConfigEntry<Double> offsetZ,
+                                   ConfigEntry<Double> rotationX,
+                                   ConfigEntry<Boolean> inverted,
+                                   ConfigEntry<Boolean> hideGui
     ) {
         super(new TranslatableComponent("gui.camerautils.third_person_camera.title", slot + 1), TEXTURE, 248, 204);
         this.slot = slot;

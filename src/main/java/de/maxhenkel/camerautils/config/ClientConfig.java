@@ -1,34 +1,35 @@
 package de.maxhenkel.camerautils.config;
 
 import de.maxhenkel.configbuilder.ConfigBuilder;
+import de.maxhenkel.configbuilder.ConfigEntry;
 
 public class ClientConfig {
 
-    public final ConfigBuilder.ConfigEntry<Double> smoothness;
-    public final ConfigBuilder.ConfigEntry<Double> minSmoothValue;
-    public final ConfigBuilder.ConfigEntry<Double> maxSmoothValue;
-    public final ConfigBuilder.ConfigEntry<Double> cinematicCameraModifier;
-    public final ConfigBuilder.ConfigEntry<Double> zoom;
-    public final ConfigBuilder.ConfigEntry<Double> zoomSensitivity;
-    public final ConfigBuilder.ConfigEntry<Double> thirdPersonDistance;
-    public final ConfigBuilder.ConfigEntry<Double> thirdPersonDistanceSensitivity;
-    public final ConfigBuilder.ConfigEntry<Double> thirdPersonOffsetX1;
-    public final ConfigBuilder.ConfigEntry<Double> thirdPersonOffsetY1;
-    public final ConfigBuilder.ConfigEntry<Double> thirdPersonOffsetZ1;
-    public final ConfigBuilder.ConfigEntry<Double> thirdPersonRotationX1;
-    public final ConfigBuilder.ConfigEntry<Boolean> thirdPersonInverted1;
-    public final ConfigBuilder.ConfigEntry<Boolean> thirdPersonHideGui1;
-    public final ConfigBuilder.ConfigEntry<Double> thirdPersonOffsetX2;
-    public final ConfigBuilder.ConfigEntry<Double> thirdPersonOffsetY2;
-    public final ConfigBuilder.ConfigEntry<Double> thirdPersonOffsetZ2;
-    public final ConfigBuilder.ConfigEntry<Double> thirdPersonRotationX2;
-    public final ConfigBuilder.ConfigEntry<Boolean> thirdPersonInverted2;
-    public final ConfigBuilder.ConfigEntry<Boolean> thirdPersonHideGui2;
-    public final ConfigBuilder.ConfigEntry<ModifierKey> modifierKey;
-    public final ConfigBuilder.ConfigEntry<Double> guiOpacity;
-    public final ConfigBuilder.ConfigEntry<Double> zoomAnimationFrom;
-    public final ConfigBuilder.ConfigEntry<Double> zoomAnimationTo;
-    public final ConfigBuilder.ConfigEntry<Integer> zoomAnimationDuration;
+    public final ConfigEntry<Double> smoothness;
+    public final ConfigEntry<Double> minSmoothValue;
+    public final ConfigEntry<Double> maxSmoothValue;
+    public final ConfigEntry<Double> cinematicCameraModifier;
+    public final ConfigEntry<Double> zoom;
+    public final ConfigEntry<Double> zoomSensitivity;
+    public final ConfigEntry<Double> thirdPersonDistance;
+    public final ConfigEntry<Double> thirdPersonDistanceSensitivity;
+    public final ConfigEntry<Double> thirdPersonOffsetX1;
+    public final ConfigEntry<Double> thirdPersonOffsetY1;
+    public final ConfigEntry<Double> thirdPersonOffsetZ1;
+    public final ConfigEntry<Double> thirdPersonRotationX1;
+    public final ConfigEntry<Boolean> thirdPersonInverted1;
+    public final ConfigEntry<Boolean> thirdPersonHideGui1;
+    public final ConfigEntry<Double> thirdPersonOffsetX2;
+    public final ConfigEntry<Double> thirdPersonOffsetY2;
+    public final ConfigEntry<Double> thirdPersonOffsetZ2;
+    public final ConfigEntry<Double> thirdPersonRotationX2;
+    public final ConfigEntry<Boolean> thirdPersonInverted2;
+    public final ConfigEntry<Boolean> thirdPersonHideGui2;
+    public final ConfigEntry<ModifierKey> modifierKey;
+    public final ConfigEntry<Double> guiOpacity;
+    public final ConfigEntry<Double> zoomAnimationFrom;
+    public final ConfigEntry<Double> zoomAnimationTo;
+    public final ConfigEntry<Integer> zoomAnimationDuration;
 
     public static int thirdPersonCam = -1;
 
