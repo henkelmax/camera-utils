@@ -57,6 +57,6 @@ public class CameraUtils implements ClientModInitializer {
         ZOOM_ANIMATION_GUI = KeyBindingHelper.registerKeyBinding(new KeyMapping("key.camerautils.zoom_animation_settings", InputConstants.UNKNOWN.getValue(), "key.categories.camerautils_settings"));
 
         Minecraft mc = Minecraft.getInstance();
-        ConfigBuilder.create(mc.gameDirectory.toPath().resolve("config").resolve(MODID).resolve("camerautils.properties"), builder -> CLIENT_CONFIG = new ClientConfig(builder));
+        CLIENT_CONFIG = ConfigBuilder.build(mc.gameDirectory.toPath().resolve("config").resolve(MODID).resolve("camerautils.properties"), ClientConfig::new);
     }
 }
