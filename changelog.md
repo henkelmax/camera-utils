@@ -1,1 +1,1 @@
-- Updated to 1.18.1
+- Added incompatibility with Gravity Changer
