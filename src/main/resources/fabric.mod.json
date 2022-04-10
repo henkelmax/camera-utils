@@ -30,5 +30,8 @@
   },
   "conflicts": {
     "optifabric": "*"
+  },
+  "breaks": {
+    "gravitychanger": "*"
   }
 }
