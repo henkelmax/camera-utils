@@ -4,7 +4,7 @@ import de.maxhenkel.camerautils.CameraUtils;
 import de.maxhenkel.camerautils.Utils;
 import de.maxhenkel.configbuilder.ConfigEntry;
 import net.minecraft.client.gui.components.Button;
-import net.minecraft.network.chat.TranslatableComponent;
+import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 
 public class ThirdPersonCameraScreen extends SettingsScreenBase {
@@ -27,7 +27,7 @@ public class ThirdPersonCameraScreen extends SettingsScreenBase {
                                    ConfigEntry<Boolean> inverted,
                                    ConfigEntry<Boolean> hideGui
     ) {
-        super(new TranslatableComponent("gui.camerautils.third_person_camera.title", slot + 1), TEXTURE, 248, 204);
+        super(Component.translatable("gui.camerautils.third_person_camera.title", slot + 1), TEXTURE, 248, 204);
         this.slot = slot;
         this.offsetX = offsetX;
         this.offsetY = offsetY;
@@ -46,38 +46,38 @@ public class ThirdPersonCameraScreen extends SettingsScreenBase {
                 -10D,
                 10D,
                 0.1D,
-                value -> new TranslatableComponent("message.camerautils.offset_x", Utils.round(value, 2))
+                value -> Component.translatable("message.camerautils.offset_x", Utils.round(value, 2))
         ));
         addRenderableWidget(new DoubleConfigValueSlider(guiLeft + 10, guiTop + 7 + font.lineHeight + 10 + 25, xSize - 20, 20,
                 offsetY,
                 -5D,
                 5D,
                 0.1D,
-                value -> new TranslatableComponent("message.camerautils.offset_y", Utils.round(value, 2))
+                value -> Component.translatable("message.camerautils.offset_y", Utils.round(value, 2))
         ));
         addRenderableWidget(new DoubleConfigValueSlider(guiLeft + 10, guiTop + 7 + font.lineHeight + 10 + 25 * 2, xSize - 20, 20,
                 offsetZ,
                 -5D,
                 5D,
                 0.1D,
-                value -> new TranslatableComponent("message.camerautils.offset_z", Utils.round(value, 2))
+                value -> Component.translatable("message.camerautils.offset_z", Utils.round(value, 2))
         ));
         addRenderableWidget(new DoubleConfigValueSlider(guiLeft + 10, guiTop + 7 + font.lineHeight + 10 + 25 * 3, xSize - 20, 20,
                 rotationX,
                 -180D,
                 180D,
                 1D,
-                value -> new TranslatableComponent("message.camerautils.rotation_x", value.intValue())
+                value -> Component.translatable("message.camerautils.rotation_x", value.intValue())
         ));
         addRenderableWidget(new ConfigValueButton(guiLeft + 10, guiTop + 7 + font.lineHeight + 10 + 25 * 4, xSize - 20, 20,
                 inverted,
-                value -> new TranslatableComponent("message.camerautils.inverted", value)
+                value -> Component.translatable("message.camerautils.inverted", value)
         ));
         addRenderableWidget(new ConfigValueButton(guiLeft + 10, guiTop + 7 + font.lineHeight + 10 + 25 * 5, xSize - 20, 20,
                 hideGui,
-                value -> new TranslatableComponent("message.camerautils.hide_gui", value)
+                value -> Component.translatable("message.camerautils.hide_gui", value)
         ));
-        addRenderableWidget(new Button(guiLeft + 10, guiTop + 7 + font.lineHeight + 10 + 25 * 6, xSize - 20, 20, new TranslatableComponent("message.camerautils.reset"), button -> {
+        addRenderableWidget(new Button(guiLeft + 10, guiTop + 7 + font.lineHeight + 10 + 25 * 6, xSize - 20, 20, Component.translatable("message.camerautils.reset"), button -> {
             offsetX.reset().save();
             offsetY.reset().save();
             offsetZ.reset().save();

@@ -3,7 +3,6 @@ package de.maxhenkel.camerautils.gui;
 import de.maxhenkel.configbuilder.ConfigEntry;
 import net.minecraft.client.gui.components.AbstractSliderButton;
 import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.TextComponent;
 
 import java.util.function.Function;
 
@@ -14,7 +13,7 @@ public class IntegerConfigValueSlider extends AbstractSliderButton {
     private Function<Integer, Component> text;
 
     public IntegerConfigValueSlider(int x, int y, int width, int height, ConfigEntry<Integer> entry, int min, int max, Function<Integer, Component> text) {
-        super(x, y, width, height, TextComponent.EMPTY, getPercentage(min, max, entry.get()));
+        super(x, y, width, height, Component.literal(""), getPercentage(min, max, entry.get()));
         this.entry = entry;
         this.min = min;
         this.max = max;

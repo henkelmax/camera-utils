@@ -6,7 +6,7 @@ import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
 import net.minecraft.client.CameraType;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.screens.Screen;
-import net.minecraft.network.chat.TranslatableComponent;
+import net.minecraft.network.chat.Component;
 
 public class KeyEvents {
 
@@ -27,9 +27,9 @@ public class KeyEvents {
             if (CameraUtils.HIDE_PLAYER.consumeClick()) {
                 ClientConfig.hidePlayer = !ClientConfig.hidePlayer;
                 if (ClientConfig.hidePlayer) {
-                    mc.player.displayClientMessage(new TranslatableComponent("message.camerautils.player_hidden"), true);
+                    mc.player.displayClientMessage(Component.translatable("message.camerautils.player_hidden"), true);
                 } else {
-                    mc.player.displayClientMessage(new TranslatableComponent("message.camerautils.player_unhidden"), true);
+                    mc.player.displayClientMessage(Component.translatable("message.camerautils.player_unhidden"), true);
                 }
             }
             if (CameraUtils.THIRD_PERSON_CAM_1.consumeClick()) {
@@ -93,7 +93,7 @@ public class KeyEvents {
             zoom = Math.max(0.001, Math.min(100, zoom + (-amount * zoomSensitivity)));
             CameraUtils.CLIENT_CONFIG.thirdPersonDistance.set(zoom);
             CameraUtils.CLIENT_CONFIG.thirdPersonDistance.save();
-            mc.player.displayClientMessage(new TranslatableComponent("message.camerautils.third_person_distance", Utils.round(zoom, 2)), true);
+            mc.player.displayClientMessage(Component.translatable("message.camerautils.third_person_distance", Utils.round(zoom, 2)), true);
             return true;
         }
         if (CameraUtils.ZOOM.isDown()) {
@@ -102,7 +102,7 @@ public class KeyEvents {
             zoom = Math.max(0.001, Math.min(2, zoom + (-amount * zoomSensitivity)));
             CameraUtils.CLIENT_CONFIG.zoom.set(zoom);
             CameraUtils.CLIENT_CONFIG.zoom.save();
-            mc.player.displayClientMessage(new TranslatableComponent("message.camerautils.zoom", Math.round((1D - zoom) * 100D)), true);
+            mc.player.displayClientMessage(Component.translatable("message.camerautils.zoom", Math.round((1D - zoom) * 100D)), true);
             return true;
         }
         return false;

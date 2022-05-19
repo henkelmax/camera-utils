@@ -9,9 +9,9 @@ buildscript {
 }
 
 plugins {
-    id "fabric-loom" version "0.10-SNAPSHOT"
+    id "fabric-loom" version "0.12-SNAPSHOT"
     id "com.matthewprenger.cursegradle" version "1.4.0"
-    id "com.github.johnrengelman.shadow" version "7.0.0"
+    id "com.github.johnrengelman.shadow" version "7.1.0"
 }
 
 apply plugin: 'forge-update'
@@ -35,7 +35,7 @@ runClient.doFirst {
 
 dependencies {
     minecraft "com.mojang:minecraft:${project.minecraft_version}"
-    mappings minecraft.officialMojangMappings()
+    mappings loom.officialMojangMappings()
     modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
     modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
 
@@ -119,7 +119,10 @@ shadowJar {
     relocate 'de.maxhenkel.configbuilder', "de.maxhenkel.${mod_id}.configbuilder"
 }
 
-remapJar {
+prepareRemapJar {
     dependsOn shadowJar
-    input.set shadowJar.archiveFile.get()
+}
+
+remapJar {
+    input = shadowJar.archiveFile.get()
 }

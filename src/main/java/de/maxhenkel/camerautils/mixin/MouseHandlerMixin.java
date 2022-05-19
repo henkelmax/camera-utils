@@ -3,6 +3,7 @@ package de.maxhenkel.camerautils.mixin;
 import de.maxhenkel.camerautils.CameraUtils;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.MouseHandler;
+import net.minecraft.client.OptionInstance;
 import net.minecraft.client.Options;
 import net.minecraft.util.SmoothDouble;
 import org.objectweb.asm.Opcodes;
@@ -21,13 +22,12 @@ public abstract class MouseHandlerMixin {
     @Final
     private Minecraft minecraft;
 
-    @Redirect(method = "turnPlayer", at = @At(value = "FIELD", target = "Lnet/minecraft/client/Options;sensitivity:D", opcode = Opcodes.GETFIELD))
-    private double sensitivity(Options options) {
+    @Redirect(method = "turnPlayer", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/OptionInstance;get()Ljava/lang/Object;", ordinal = 0))
+    private Object sensitivity(OptionInstance<Double> options) {
         if (!CameraUtils.ZOOM.isDown()) {
-            return options.sensitivity;
+            return options.get();
         }
-
-        return options.sensitivity * Math.min(1D, CameraUtils.CLIENT_CONFIG.zoom.get());
+        return options.get() * Math.min(1D, CameraUtils.CLIENT_CONFIG.zoom.get());
     }
 
     @Redirect(method = "turnPlayer", at = @At(value = "FIELD", target = "Lnet/minecraft/client/Options;smoothCamera:Z", opcode = Opcodes.GETFIELD))

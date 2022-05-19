@@ -1,1 +1,1 @@
-- Added incompatibility with Gravity Changer
+- Updated to 1.19
