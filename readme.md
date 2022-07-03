@@ -1,6 +1,6 @@
-![](http://cf.way2muchnoise.eu/full_510234_downloads.svg) ![](http://cf.way2muchnoise.eu/versions/510234.svg)
+<!-- modrinth_exclude.start -->
 
-# Camera Utils
+# Camera Utils ![](http://cf.way2muchnoise.eu/full_510234_downloads.svg) ![](http://cf.way2muchnoise.eu/versions/510234.svg)
 
 ## Links
 
@@ -10,6 +10,8 @@
 - [FAQ](https://modrepo.de/minecraft/camerautils/faq)
 
 ---
+
+<!-- modrinth_exclude.end -->
 
 Camera Utils is a client side Fabric mod that adds convenient features related to the players camera.
 
