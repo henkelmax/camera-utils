@@ -118,6 +118,10 @@ public class KeyEvents {
     }
 
     private void onShoulderCam(int value) {
+        if (ClientConfig.thirdPersonCam <= -1) {
+            ClientConfig.detached = false;
+        }
+
         if (ClientConfig.thirdPersonCam == value) {
             ClientConfig.thirdPersonCam = -1;
             if (value == 0) {
@@ -150,6 +154,7 @@ public class KeyEvents {
         ClientConfig.detached = !ClientConfig.detached;
 
         if (ClientConfig.detached) {
+            ClientConfig.thirdPersonCam = -1;
             mc.options.setCameraType(CameraType.THIRD_PERSON_BACK);
 
             if (!isModifierDown() || Math.sqrt(mc.player.distanceToSqr(ClientConfig.x, ClientConfig.y, ClientConfig.z)) > 100F) {

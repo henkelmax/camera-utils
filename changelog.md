@@ -1,1 +1,1 @@
-- Updated to 1.19
+- Fixed being stuck in detached camera
