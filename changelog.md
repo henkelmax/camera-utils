@@ -1,1 +1,1 @@
-- Fixed being stuck in detached camera
+- Added korean translation
