@@ -17,7 +17,7 @@ public class MinecraftMixin {
     @Final
     public Options options;
 
-    @Inject(at = @At("HEAD"), method = "handleKeybinds", cancellable = true)
+    @Inject(at = @At("HEAD"), method = "handleKeybinds")
     private void handleKeybinds(CallbackInfo info) {
         if (options.keySmoothCamera.consumeClick()) {
             if (!CameraUtils.KEY_EVENTS.onSmoothCameraClick()) {
