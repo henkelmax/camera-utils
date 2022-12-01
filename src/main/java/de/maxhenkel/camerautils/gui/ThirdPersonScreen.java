@@ -32,13 +32,13 @@ public class ThirdPersonScreen extends SettingsScreenBase {
                 0.25D,
                 value -> Component.translatable("message.camerautils.third_person_distance", Utils.round(value, 2))
         ));
-        addRenderableWidget(new Button(guiLeft + 10, guiTop + 7 + font.lineHeight + 10 + 25 * 2, xSize - 20, 20, Component.translatable("message.camerautils.reset"), button -> {
+        addRenderableWidget(Button.builder(Component.translatable("message.camerautils.reset"), button -> {
             CameraUtils.CLIENT_CONFIG.thirdPersonDistanceSensitivity.reset();
             CameraUtils.CLIENT_CONFIG.thirdPersonDistanceSensitivity.save();
             CameraUtils.CLIENT_CONFIG.thirdPersonDistance.reset();
             CameraUtils.CLIENT_CONFIG.thirdPersonDistance.save();
             minecraft.setScreen(new ThirdPersonScreen());
-        }));
+        }).bounds(guiLeft + 10, guiTop + 7 + font.lineHeight + 10 + 25 * 2, xSize - 20, 20).build());
     }
 
 }

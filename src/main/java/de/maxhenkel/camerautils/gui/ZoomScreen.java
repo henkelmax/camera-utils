@@ -32,13 +32,13 @@ public class ZoomScreen extends SettingsScreenBase {
                 0.01D,
                 value -> Component.translatable("message.camerautils.zoom_slider", Utils.round((1D - value) * 100D, 2))
         ));
-        addRenderableWidget(new Button(guiLeft + 10, guiTop + 7 + font.lineHeight + 10 + 25 * 2, xSize - 20, 20, Component.translatable("message.camerautils.reset"), button -> {
+        addRenderableWidget(Button.builder(Component.translatable("message.camerautils.reset"), button -> {
             CameraUtils.CLIENT_CONFIG.zoomSensitivity.reset();
             CameraUtils.CLIENT_CONFIG.zoomSensitivity.save();
             CameraUtils.CLIENT_CONFIG.zoom.reset();
             CameraUtils.CLIENT_CONFIG.zoom.save();
             minecraft.setScreen(new ZoomScreen());
-        }));
+        }).bounds(guiLeft + 10, guiTop + 7 + font.lineHeight + 10 + 25 * 2, xSize - 20, 20).build());
     }
 
 }

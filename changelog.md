@@ -1,1 +1,1 @@
-- Fixed compatibility with Gravity API
+- Updated to 1.19.3

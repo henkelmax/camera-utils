@@ -37,7 +37,7 @@ public class ZoomAnimationScreen extends SettingsScreenBase {
                 20 * 30,
                 value -> Component.translatable("message.camerautils.zoom_animation_duration", value)
         ));
-        addRenderableWidget(new Button(guiLeft + 10, guiTop + 7 + font.lineHeight + 10 + 25 * 3, xSize - 20, 20, Component.translatable("message.camerautils.reset"), button -> {
+        addRenderableWidget(Button.builder(Component.translatable("message.camerautils.reset"), button -> {
             CameraUtils.CLIENT_CONFIG.zoomAnimationFrom.reset();
             CameraUtils.CLIENT_CONFIG.zoomAnimationFrom.save();
             CameraUtils.CLIENT_CONFIG.zoomAnimationTo.reset();
@@ -45,7 +45,7 @@ public class ZoomAnimationScreen extends SettingsScreenBase {
             CameraUtils.CLIENT_CONFIG.zoomAnimationDuration.reset();
             CameraUtils.CLIENT_CONFIG.zoomAnimationDuration.save();
             minecraft.setScreen(new ZoomAnimationScreen());
-        }));
+        }).bounds(guiLeft + 10, guiTop + 7 + font.lineHeight + 10 + 25 * 3, xSize - 20, 20).build());
     }
 
 }

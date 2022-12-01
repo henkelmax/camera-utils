@@ -77,7 +77,7 @@ public class ThirdPersonCameraScreen extends SettingsScreenBase {
                 hideGui,
                 value -> Component.translatable("message.camerautils.hide_gui", value)
         ));
-        addRenderableWidget(new Button(guiLeft + 10, guiTop + 7 + font.lineHeight + 10 + 25 * 6, xSize - 20, 20, Component.translatable("message.camerautils.reset"), button -> {
+        addRenderableWidget(Button.builder(Component.translatable("message.camerautils.reset"), button -> {
             offsetX.reset().save();
             offsetY.reset().save();
             offsetZ.reset().save();
@@ -85,7 +85,7 @@ public class ThirdPersonCameraScreen extends SettingsScreenBase {
             inverted.reset().save();
             hideGui.reset().save();
             minecraft.setScreen(new ThirdPersonCameraScreen(slot, offsetX, offsetY, offsetZ, rotationX, inverted, hideGui));
-        }));
+        }).bounds(guiLeft + 10, guiTop + 7 + font.lineHeight + 10 + 25 * 6, xSize - 20, 20).build());
     }
 
 }
