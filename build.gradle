@@ -17,6 +17,7 @@ repositories {
     mavenLocal()
     mavenCentral()
     maven { url = 'https://maven.fabricmc.net/' }
+    maven { url = 'https://maven.maxhenkel.de/repository/public/' }
 }
 
 runClient.doFirst {
