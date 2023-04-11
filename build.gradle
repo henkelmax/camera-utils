@@ -1,21 +1,10 @@
-buildscript {
-    repositories {
-        maven { url = 'https://maven.maxhenkel.de/repository/public' }
-        mavenLocal()
-    }
-    dependencies {
-        classpath group: 'de.maxhenkel.forge-update', name: 'forge-update', version: '1.0.4'
-    }
-}
-
 plugins {
-    id "fabric-loom" version "1.0-SNAPSHOT"
-    id "com.matthewprenger.cursegradle" version "1.4.0"
-    id "com.github.johnrengelman.shadow" version "7.1.0"
-    id "com.modrinth.minotaur" version "2.+"
+    id 'fabric-loom' version '1.1-SNAPSHOT'
+    id 'com.matthewprenger.cursegradle' version '1.4.0'
+    id 'com.github.johnrengelman.shadow' version '7.1.2'
+    id 'com.modrinth.minotaur' version '2.+'
+    id 'mod-update' version '2.0.0'
 }
-
-apply plugin: 'forge-update'
 
 sourceCompatibility = JavaVersion.VERSION_17
 targetCompatibility = JavaVersion.VERSION_17
@@ -27,7 +16,7 @@ group = maven_group
 repositories {
     mavenLocal()
     mavenCentral()
-    maven { url = "https://maven.fabricmc.net/" }
+    maven { url = 'https://maven.fabricmc.net/' }
 }
 
 runClient.doFirst {
@@ -40,10 +29,10 @@ dependencies {
     modImplementation "net.fabricmc:fabric-loader:${loader_version}"
 
     Set<String> apiModules = [
-            "fabric-api-base",
-            "fabric-resource-loader-v0",
-            "fabric-lifecycle-events-v1",
-            "fabric-key-binding-api-v1"
+            'fabric-api-base',
+            'fabric-resource-loader-v0',
+            'fabric-lifecycle-events-v1',
+            'fabric-key-binding-api-v1'
     ]
 
     apiModules.forEach {
@@ -57,15 +46,15 @@ dependencies {
 }
 
 processResources {
-    filesMatching("fabric.mod.json") {
-        expand "version": version,
-                "minecraft_dependency": minecraft_dependency,
-                "loader_version": loader_version
+    filesMatching('fabric.mod.json') {
+        expand 'version': version,
+                'minecraft_dependency': minecraft_dependency,
+                'loader_version': loader_version
     }
 }
 
 tasks.withType(JavaCompile).configureEach {
-    it.options.encoding = "UTF-8"
+    it.options.encoding = 'UTF-8'
     it.options.release = 17
 }
 
@@ -74,7 +63,7 @@ java {
 }
 
 jar {
-    from("LICENSE") {
+    from('LICENSE') {
         rename { "${it}_${archivesBaseName}" }
     }
 }
@@ -87,8 +76,8 @@ curseforge {
         changelog = file('changelog.md')
         releaseType = release_type
         addGameVersion curseforge_minecraft_version
-        addGameVersion "Fabric"
-        addGameVersion "Java 17"
+        addGameVersion 'Fabric'
+        addGameVersion 'Java 17'
         mainArtifact(file("${buildDir}/libs/${archivesBaseName}-${version}.jar")) {
             displayName = "[FABRIC][${minecraft_version}] ${mod_name} ${mod_version}"
             relations {
@@ -118,31 +107,20 @@ modrinth {
     versionName = "[FABRIC][${minecraft_version}] ${mod_name} ${mod_version}"
     uploadFile = remapJar
     versionType = release_type.toUpperCase()
-    changelog = file("changelog.md").text
+    changelog = file('changelog.md').text
     gameVersions = [minecraft_version]
     loaders = ['fabric']
-    dependencies {
-        required.project "P7dR8mSH" // Fabric API
-    }
     syncBodyFrom = file("${rootDir}/readme.md").text
 }
 tasks.modrinth.dependsOn(build)
 
-forgeUpdate {
-    def messages = []
-    file('changelog.md').eachLine { String line ->
-        if (line.trim().startsWith('-')) {
-            messages.add(line.replaceFirst('-', '').trim())
-        }
-    }
-
+modUpdate {
     serverURL = 'https://update.maxhenkel.de/'
-    apiKey = file('forge_update_api_key.txt').exists() ? file('forge_update_api_key.txt').text : ''
     modID = mod_id
     gameVersion = minecraft_version
     modLoader = "fabric"
     modVersion = mod_version
-    updateMessages = messages
+    changelogFile = file('changelog.md')
     releaseType = release_type
     tags = recommended == 'true' ? ['recommended'] : []
 }
@@ -153,10 +131,7 @@ shadowJar {
     relocate 'de.maxhenkel.configbuilder', "de.maxhenkel.${mod_id}.configbuilder"
 }
 
-prepareRemapJar {
-    dependsOn shadowJar
-}
-
 remapJar {
+    dependsOn shadowJar
     input = shadowJar.archiveFile.get()
 }
