@@ -134,5 +134,5 @@ shadowJar {
 
 remapJar {
     dependsOn shadowJar
-    input = shadowJar.archiveFile.get()
+    inputFile = shadowJar.archiveFile.get()
 }
