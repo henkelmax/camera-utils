@@ -1,1 +1,1 @@
-- Fixed left alt also working as modifier key
+- Updated to 1.20
