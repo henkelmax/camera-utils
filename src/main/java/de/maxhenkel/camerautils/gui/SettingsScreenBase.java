@@ -32,6 +32,10 @@ public class SettingsScreenBase extends CameraScreenBase {
 
     @Override
     public void render(GuiGraphics guiGraphics, int mouseX, int mouseY, float partialTicks) {
+        if (opacity >= 1F) {
+            renderTransparentBackground(guiGraphics);
+        }
+
         RenderSystem.setShader(GameRenderer::getPositionTexShader);
         RenderSystem.setShaderColor(1F, 1F, 1F, opacity);
         guiGraphics.blit(texture, guiLeft, guiTop, 0, 0, xSize, ySize);
@@ -48,6 +52,11 @@ public class SettingsScreenBase extends CameraScreenBase {
         } else {
             guiGraphics.blit(VISIBILITY, guiLeft + xSize - 7 - 16, guiTop + 4, 0, 0, 16, 16, 32, 32);
         }
+    }
+
+    @Override
+    public void renderBackground(GuiGraphics guiGraphics, int i, int j, float f) {
+
     }
 
     @Override
