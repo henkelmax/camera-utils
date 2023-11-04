@@ -1,1 +1,1 @@
-- Updated to 1.20.2
+- Improved mod compatibility with other mods (Thanks JustAlittleWolf)
