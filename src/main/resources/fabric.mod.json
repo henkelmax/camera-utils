@@ -13,6 +13,7 @@
     "issues": "https://github.com/henkelmax/camera-utils/issues"
   },
   "license": "All Rights Reserved",
+  "icon": "assets/camerautils/icon.png",
   "environment": "client",
   "entrypoints": {
     "client": [
