@@ -1,1 +1,1 @@
-- Improved mod compatibility with other mods (Thanks JustAlittleWolf)
+- Added mod icon
