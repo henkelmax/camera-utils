@@ -1,9 +1,10 @@
 <!-- modrinth_exclude.start -->
 
-# Camera Utils ![](http://cf.way2muchnoise.eu/full_510234_downloads.svg) ![](http://cf.way2muchnoise.eu/versions/510234.svg)
+# Camera Utils
 
 ## Links
 
+- [Modrinth](https://modrinth.com/mod/camera-utils)
 - [CurseForge](https://www.curseforge.com/minecraft/mc-mods/camera-utils)
 
 ---
