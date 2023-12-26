@@ -1,7 +1,7 @@
 package de.maxhenkel.camerautils.config;
 
 import de.maxhenkel.configbuilder.ConfigBuilder;
-import de.maxhenkel.configbuilder.ConfigEntry;
+import de.maxhenkel.configbuilder.entry.ConfigEntry;
 
 public class ClientConfig {
 
