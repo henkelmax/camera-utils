@@ -2,7 +2,7 @@ package de.maxhenkel.camerautils.gui;
 
 import de.maxhenkel.camerautils.CameraUtils;
 import de.maxhenkel.camerautils.Utils;
-import de.maxhenkel.configbuilder.ConfigEntry;
+import de.maxhenkel.configbuilder.entry.ConfigEntry;
 import net.minecraft.client.gui.components.Button;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;

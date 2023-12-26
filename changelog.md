@@ -1,1 +1,1 @@
-- Fixed compatibility with Gravity API
+- Updated dependencies
