@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "id": "camerautils",
-  "version": "${version}",
+  "version": "${mod_version}",
   "name": "Camera Utils",
   "description": "Camera Utils",
   "authors": [
@@ -24,14 +24,14 @@
     "camerautils.mixins.json"
   ],
   "depends": {
-    "fabricloader": ">=${loader_version}",
-    "minecraft": "${minecraft_dependency}",
-    "java": ">=17"
+    "fabricloader": "${fabric_loader_dependency}",
+    "minecraft": "${minecraft_dependency}"
   },
   "conflicts": {
     "optifabric": "*"
   },
   "breaks": {
+    "fabric-api": "${fabric_api_dependency_breaks}",
     "gravitychanger": "*"
   }
 }
