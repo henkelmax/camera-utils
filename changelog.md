@@ -1,1 +1,1 @@
-- Added Belarusian translation
+- Updated dependencies
