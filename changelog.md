@@ -1,1 +1,1 @@
-- Updated dependencies
+- Added Russian translation
