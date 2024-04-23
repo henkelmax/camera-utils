@@ -12,7 +12,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 public class GuiMixin {
 
     @Inject(method = "renderCrosshair", at = @At("HEAD"), cancellable = true)
-    private void renderCrosshair(GuiGraphics guiGraphics, CallbackInfo ci) {
+    private void renderCrosshair(GuiGraphics guiGraphics, float f, CallbackInfo ci) {
         if (ClientConfig.thirdPersonCam >= 0) {
             ci.cancel();
         }
