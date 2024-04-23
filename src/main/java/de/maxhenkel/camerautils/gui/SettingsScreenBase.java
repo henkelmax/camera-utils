@@ -1,6 +1,7 @@
 package de.maxhenkel.camerautils.gui;
 
 import com.mojang.blaze3d.systems.RenderSystem;
+import com.mojang.blaze3d.vertex.*;
 import de.maxhenkel.camerautils.CameraUtils;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;
@@ -9,6 +10,7 @@ import net.minecraft.client.resources.sounds.SimpleSoundInstance;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundEvents;
+import org.joml.Matrix4f;
 
 public class SettingsScreenBase extends CameraScreenBase {
 
@@ -36,17 +38,13 @@ public class SettingsScreenBase extends CameraScreenBase {
             renderTransparentBackground(guiGraphics);
         }
 
-        RenderSystem.setShader(GameRenderer::getPositionTexShader);
-        RenderSystem.setShaderColor(1F, 1F, 1F, opacity);
-        guiGraphics.blit(texture, guiLeft, guiTop, 0, 0, xSize, ySize);
+        colorBlit(guiGraphics, texture, guiLeft, guiTop, 0, 0, xSize, ySize, 256, 256, opacity);
 
         super.render(guiGraphics, mouseX, mouseY, partialTicks);
 
         int titleWidth = font.width(getTitle());
         guiGraphics.drawString(font, getTitle().getVisualOrderText(), guiLeft + (xSize - titleWidth) / 2, guiTop + 7, FONT_COLOR, false);
 
-        RenderSystem.setShader(GameRenderer::getPositionTexShader);
-        RenderSystem.setShaderColor(1F, 1F, 1F, 1F);
         if (visibilityArea.isHovered(guiLeft, guiTop, mouseX, mouseY)) {
             guiGraphics.blit(VISIBILITY, guiLeft + xSize - 7 - 16, guiTop + 4, 16, 0, 16, 16, 32, 32);
         } else {
@@ -78,4 +76,32 @@ public class SettingsScreenBase extends CameraScreenBase {
     public boolean isPauseScreen() {
         return false;
     }
+
+    private void colorBlit(GuiGraphics guiGraphics, ResourceLocation resourceLocation, int i, int j, float f, float g, int k, int l, int m, int n, float alpha) {
+        colorBlit(guiGraphics, resourceLocation, i, j, k, l, f, g, k, l, m, n, alpha);
+    }
+
+    private void colorBlit(GuiGraphics guiGraphics, ResourceLocation resourceLocation, int i, int j, int k, int l, float f, float g, int m, int n, int o, int p, float alpha) {
+        colorBlit(guiGraphics, resourceLocation, i, i + k, j, j + l, 0, m, n, f, g, o, p, alpha);
+    }
+
+    private void colorBlit(GuiGraphics guiGraphics, ResourceLocation resourceLocation, int i, int j, int k, int l, int m, int n, int o, float f, float g, int p, int q, float alpha) {
+        colorBlit(guiGraphics, resourceLocation, i, j, k, l, m, f / (float) p, (f + (float) n) / (float) p, g / (float) q, (g + (float) o) / (float) q, alpha);
+    }
+
+    private void colorBlit(GuiGraphics guiGraphics, ResourceLocation resourceLocation, int i, int j, int k, int l, int m, float f, float g, float h, float n, float alpha) {
+        RenderSystem.setShaderTexture(0, resourceLocation);
+        RenderSystem.setShader(GameRenderer::getPositionColorTexShader);
+        RenderSystem.enableBlend();
+        Matrix4f matrix4f = guiGraphics.pose().last().pose();
+        BufferBuilder bufferBuilder = Tesselator.getInstance().getBuilder();
+        bufferBuilder.begin(VertexFormat.Mode.QUADS, DefaultVertexFormat.POSITION_COLOR_TEX);
+        bufferBuilder.vertex(matrix4f, (float) i, (float) k, (float) m).color(1F, 1F, 1F, alpha).uv(f, h).endVertex();
+        bufferBuilder.vertex(matrix4f, (float) i, (float) l, (float) m).color(1F, 1F, 1F, alpha).uv(f, n).endVertex();
+        bufferBuilder.vertex(matrix4f, (float) j, (float) l, (float) m).color(1F, 1F, 1F, alpha).uv(g, n).endVertex();
+        bufferBuilder.vertex(matrix4f, (float) j, (float) k, (float) m).color(1F, 1F, 1F, alpha).uv(g, h).endVertex();
+        BufferUploader.drawWithShader(bufferBuilder.end());
+        RenderSystem.disableBlend();
+    }
+
 }
