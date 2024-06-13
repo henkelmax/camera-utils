@@ -8,7 +8,7 @@ import net.minecraft.resources.ResourceLocation;
 
 public class ThirdPersonScreen extends SettingsScreenBase {
 
-    private static final ResourceLocation TEXTURE = new ResourceLocation(CameraUtils.MODID, "textures/gui/generic_3.png");
+    private static final ResourceLocation TEXTURE = ResourceLocation.fromNamespaceAndPath(CameraUtils.MODID, "textures/gui/generic_3.png");
 
     public ThirdPersonScreen() {
         super(Component.translatable("gui.camerautils.third_person_distance.title"), TEXTURE, 248, 104);

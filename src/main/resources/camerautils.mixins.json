@@ -12,7 +12,6 @@
     "CameraMixin",
     "GuiMixin",
     "CameraTypeMixin",
-    "SimpleOptionsSubScreenMixin",
     "MinecraftMixin",
     "PlayerRendererMixin"
   ],

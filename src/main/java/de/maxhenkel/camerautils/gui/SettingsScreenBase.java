@@ -6,6 +6,7 @@ import de.maxhenkel.camerautils.CameraUtils;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.renderer.GameRenderer;
+import net.minecraft.client.renderer.LightTexture;
 import net.minecraft.client.resources.sounds.SimpleSoundInstance;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
@@ -14,7 +15,7 @@ import org.joml.Matrix4f;
 
 public class SettingsScreenBase extends CameraScreenBase {
 
-    private static final ResourceLocation VISIBILITY = new ResourceLocation(CameraUtils.MODID, "textures/visibility.png");
+    private static final ResourceLocation VISIBILITY = ResourceLocation.fromNamespaceAndPath(CameraUtils.MODID, "textures/visibility.png");
     protected ResourceLocation texture;
 
     private HoverArea visibilityArea;
@@ -91,16 +92,15 @@ public class SettingsScreenBase extends CameraScreenBase {
 
     private void colorBlit(GuiGraphics guiGraphics, ResourceLocation resourceLocation, int i, int j, int k, int l, int m, float f, float g, float h, float n, float alpha) {
         RenderSystem.setShaderTexture(0, resourceLocation);
-        RenderSystem.setShader(GameRenderer::getPositionColorTexShader);
+        RenderSystem.setShader(GameRenderer::getPositionTexColorShader);
         RenderSystem.enableBlend();
         Matrix4f matrix4f = guiGraphics.pose().last().pose();
-        BufferBuilder bufferBuilder = Tesselator.getInstance().getBuilder();
-        bufferBuilder.begin(VertexFormat.Mode.QUADS, DefaultVertexFormat.POSITION_COLOR_TEX);
-        bufferBuilder.vertex(matrix4f, (float) i, (float) k, (float) m).color(1F, 1F, 1F, alpha).uv(f, h).endVertex();
-        bufferBuilder.vertex(matrix4f, (float) i, (float) l, (float) m).color(1F, 1F, 1F, alpha).uv(f, n).endVertex();
-        bufferBuilder.vertex(matrix4f, (float) j, (float) l, (float) m).color(1F, 1F, 1F, alpha).uv(g, n).endVertex();
-        bufferBuilder.vertex(matrix4f, (float) j, (float) k, (float) m).color(1F, 1F, 1F, alpha).uv(g, h).endVertex();
-        BufferUploader.drawWithShader(bufferBuilder.end());
+        BufferBuilder bufferBuilder = Tesselator.getInstance().begin(VertexFormat.Mode.QUADS, DefaultVertexFormat.POSITION_TEX_COLOR);
+        bufferBuilder.addVertex(matrix4f, (float) i, (float) k, (float) m).setColor(1F, 1F, 1F, alpha).setUv(f, h);
+        bufferBuilder.addVertex(matrix4f, (float) i, (float) l, (float) m).setColor(1F, 1F, 1F, alpha).setUv(f, n);
+        bufferBuilder.addVertex(matrix4f, (float) j, (float) l, (float) m).setColor(1F, 1F, 1F, alpha).setUv(g, n);
+        bufferBuilder.addVertex(matrix4f, (float) j, (float) k, (float) m).setColor(1F, 1F, 1F, alpha).setUv(g, h);
+        BufferUploader.drawWithShader(bufferBuilder.buildOrThrow());
         RenderSystem.disableBlend();
     }
 

@@ -9,7 +9,7 @@ import net.minecraft.resources.ResourceLocation;
 
 public class ThirdPersonCameraScreen extends SettingsScreenBase {
 
-    private static final ResourceLocation TEXTURE = new ResourceLocation(CameraUtils.MODID, "textures/gui/generic_7.png");
+    private static final ResourceLocation TEXTURE = ResourceLocation.fromNamespaceAndPath(CameraUtils.MODID, "textures/gui/generic_7.png");
 
     private ConfigEntry<Double> offsetX;
     private ConfigEntry<Double> offsetY;

@@ -8,7 +8,7 @@ import net.minecraft.resources.ResourceLocation;
 
 public class ZoomScreen extends SettingsScreenBase {
 
-    private static final ResourceLocation TEXTURE = new ResourceLocation(CameraUtils.MODID, "textures/gui/generic_3.png");
+    private static final ResourceLocation TEXTURE = ResourceLocation.fromNamespaceAndPath(CameraUtils.MODID, "textures/gui/generic_3.png");
 
     public ZoomScreen() {
         super(Component.translatable("gui.camerautils.zoom.title"), TEXTURE, 248, 104);

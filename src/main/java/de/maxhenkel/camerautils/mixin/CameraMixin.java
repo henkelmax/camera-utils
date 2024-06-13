@@ -19,22 +19,22 @@ public abstract class CameraMixin {
     @Shadow
     private float yRot;
 
-    @Redirect(method = "setup", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/Camera;move(DDD)V", ordinal = 0))
-    private void move(Camera camera, double x, double y, double z) {
+    @Redirect(method = "setup", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/Camera;move(FFF)V", ordinal = 0))
+    private void move(Camera instance, float f, float g, float h) {
         if (ClientConfig.detached) {
             //Don't move with detached cam
         } else if (ClientConfig.thirdPersonCam == 0) {
             boolean inverted = CameraUtils.CLIENT_CONFIG.thirdPersonInverted1.get();
-            move(CameraUtils.CLIENT_CONFIG.thirdPersonOffsetX1.get(), CameraUtils.CLIENT_CONFIG.thirdPersonOffsetY1.get(), CameraUtils.CLIENT_CONFIG.thirdPersonOffsetZ1.get());
+            move(CameraUtils.CLIENT_CONFIG.thirdPersonOffsetX1.get().floatValue(), CameraUtils.CLIENT_CONFIG.thirdPersonOffsetY1.get().floatValue(), CameraUtils.CLIENT_CONFIG.thirdPersonOffsetZ1.get().floatValue());
             setRotation(yRot + (inverted ? 180F : 0F), CameraUtils.CLIENT_CONFIG.thirdPersonRotationX1.get().floatValue() + (inverted ? -xRot : xRot));
         } else if (ClientConfig.thirdPersonCam == 1) {
             boolean inverted = CameraUtils.CLIENT_CONFIG.thirdPersonInverted2.get();
-            move(CameraUtils.CLIENT_CONFIG.thirdPersonOffsetX2.get(), CameraUtils.CLIENT_CONFIG.thirdPersonOffsetY2.get(), CameraUtils.CLIENT_CONFIG.thirdPersonOffsetZ2.get());
+            move(CameraUtils.CLIENT_CONFIG.thirdPersonOffsetX2.get().floatValue(), CameraUtils.CLIENT_CONFIG.thirdPersonOffsetY2.get().floatValue(), CameraUtils.CLIENT_CONFIG.thirdPersonOffsetZ2.get().floatValue());
             setRotation(yRot + (inverted ? 180F : 0F), CameraUtils.CLIENT_CONFIG.thirdPersonRotationX2.get().floatValue() + (inverted ? -xRot : xRot));
         } else if (!Minecraft.getInstance().options.getCameraType().isFirstPerson()) {
-            move(-getMaxZoom(CameraUtils.CLIENT_CONFIG.thirdPersonDistance.get()), 0D, 0D);
+            move(-getMaxZoom(CameraUtils.CLIENT_CONFIG.thirdPersonDistance.get().floatValue()), 0F, 0F);
         } else {
-            move(-getMaxZoom(4D), 0D, 0D);
+            move(-getMaxZoom(4F), 0F, 0F);
         }
     }
 
@@ -47,10 +47,10 @@ public abstract class CameraMixin {
     }
 
     @Shadow
-    protected abstract void move(double d, double e, double f);
+    protected abstract void move(float d, float e, float f);
 
     @Shadow
-    protected abstract double getMaxZoom(double d);
+    protected abstract float getMaxZoom(float d);
 
     @Shadow
     protected abstract void setRotation(float f, float g);
