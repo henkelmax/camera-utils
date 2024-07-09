@@ -1,1 +1,1 @@
-- Updated to 1.21
+- Added Ukrainian translation
