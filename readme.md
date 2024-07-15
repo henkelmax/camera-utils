@@ -55,11 +55,6 @@ These can be modified by pressing `RIGHT ALT` and `F6` or `F7` respectively.
 
 By pressing `RIGHT ALT` and the cinematic camera button, you can adjust the properties of the cinematic camera.
 
-## Movement Smoothing
-
-This option is located in the accessibility settings.
-It smoothens the players camera movement to potentially avoid motion sickness.
-
 ## Additional Information
 
 Pressing any key related to the camera utils mod in combination with `RIGHT ALT`
