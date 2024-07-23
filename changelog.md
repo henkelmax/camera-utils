@@ -1,1 +1,1 @@
-- Updated Belarusian translation
+- Updated Chinese Simplified translation
