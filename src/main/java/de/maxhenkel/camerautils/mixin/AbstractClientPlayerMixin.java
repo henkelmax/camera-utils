@@ -1,21 +1,20 @@
 package de.maxhenkel.camerautils.mixin;
 
+import com.llamalad7.mixinextras.injector.ModifyReturnValue;
 import de.maxhenkel.camerautils.CameraUtils;
 import net.minecraft.client.player.AbstractClientPlayer;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
-import org.spongepowered.asm.mixin.injection.Inject;
-import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(AbstractClientPlayer.class)
 public abstract class AbstractClientPlayerMixin {
 
-    @Inject(at = @At("RETURN"), method = "getFieldOfViewModifier", cancellable = true)
-    private void getFieldOfViewModifier(CallbackInfoReturnable<Float> info) {
+    @ModifyReturnValue(at = @At("RETURN"), method = "getFieldOfViewModifier")
+    private float getFieldOfViewModifier(float original) {
         if (CameraUtils.ZOOM_TRACK != null) {
-            info.setReturnValue(CameraUtils.ZOOM_TRACK.getCurrentFOV());
+            return CameraUtils.ZOOM_TRACK.getCurrentFOV();
         } else {
-            info.setReturnValue(info.getReturnValue() * (CameraUtils.ZOOM.isDown() ? CameraUtils.CLIENT_CONFIG.zoom.get().floatValue() : 1F));
+            return original * (CameraUtils.ZOOM.isDown() ? CameraUtils.CLIENT_CONFIG.zoom.get().floatValue() : 1F);
         }
     }
 
