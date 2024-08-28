@@ -1,1 +1,1 @@
-- Improved mod compatibility
+- Fixed zoom bounds

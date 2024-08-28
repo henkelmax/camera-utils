@@ -89,18 +89,18 @@ public class KeyEvents {
 
     public boolean onScroll(double amount) {
         if (CameraUtils.THIRD_PERSON_DISTANCE.isDown() && !mc.options.getCameraType().isFirstPerson() && CameraUtils.CLIENT_CONFIG.thirdPersonCam < 0) {
-            double zoom = CameraUtils.CLIENT_CONFIG.thirdPersonDistance.get();
-            double zoomSensitivity = CameraUtils.CLIENT_CONFIG.thirdPersonDistanceSensitivity.get();
-            zoom = Math.max(0.001, Math.min(100, zoom + (-amount * zoomSensitivity)));
-            CameraUtils.CLIENT_CONFIG.thirdPersonDistance.set(zoom);
+            double distance = CameraUtils.CLIENT_CONFIG.thirdPersonDistance.get();
+            double sensitivity = CameraUtils.CLIENT_CONFIG.thirdPersonDistanceSensitivity.get();
+            distance = Math.max(0D, Math.min(100D, distance + (-amount * sensitivity)));
+            CameraUtils.CLIENT_CONFIG.thirdPersonDistance.set(distance);
             CameraUtils.CLIENT_CONFIG.thirdPersonDistance.save();
-            mc.player.displayClientMessage(Component.translatable("message.camerautils.third_person_distance", Utils.round(zoom, 2)), true);
+            mc.player.displayClientMessage(Component.translatable("message.camerautils.third_person_distance", Utils.round(distance, 2)), true);
             return true;
         }
         if (CameraUtils.ZOOM.isDown()) {
             double zoom = CameraUtils.CLIENT_CONFIG.zoom.get();
             double zoomSensitivity = CameraUtils.CLIENT_CONFIG.zoomSensitivity.get();
-            zoom = Math.max(0.001, Math.min(2, zoom + (-amount * zoomSensitivity)));
+            zoom = Math.max(0D, Math.min(2D, zoom + (-amount * zoomSensitivity)));
             CameraUtils.CLIENT_CONFIG.zoom.set(zoom);
             CameraUtils.CLIENT_CONFIG.zoom.save();
             mc.player.displayClientMessage(Component.translatable("message.camerautils.zoom", Math.round((1D - zoom) * 100D)), true);

@@ -5,6 +5,9 @@ import de.maxhenkel.configbuilder.entry.ConfigEntry;
 
 public class ClientConfig {
 
+    public static final double MAX_ZOOM = 0.1D;
+    public static final double MIN_ZOOM = 1.5D;
+
     public final ConfigEntry<Double> smoothness;
     public final ConfigEntry<Double> minSmoothValue;
     public final ConfigEntry<Double> maxSmoothValue;
@@ -45,7 +48,7 @@ public class ClientConfig {
         minSmoothValue = builder.doubleEntry("min_smoothness", 40D, 1D, 1000D);
         maxSmoothValue = builder.doubleEntry("max_smoothness", 100D, 1D, 1000D);
         cinematicCameraModifier = builder.doubleEntry("cinematic_camera_modifier", 1D, 0D, 1D);
-        zoom = builder.doubleEntry("zoom", 0.1D, 0.001D, 2D);
+        zoom = builder.doubleEntry("zoom", 0.1D, 0D, 2D);
         zoomSensitivity = builder.doubleEntry("zoom_sensitivity", 0.01D, 0.001D, 1D);
         thirdPersonDistance = builder.doubleEntry("third_person_zoom", 4D, 0D, 100D);
         thirdPersonDistanceSensitivity = builder.doubleEntry("third_person_zoom_sensitivity", 0.1D, 0.001D, 1D);
