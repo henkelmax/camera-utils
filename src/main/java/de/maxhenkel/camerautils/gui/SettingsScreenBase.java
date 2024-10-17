@@ -5,8 +5,7 @@ import com.mojang.blaze3d.vertex.*;
 import de.maxhenkel.camerautils.CameraUtils;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;
-import net.minecraft.client.renderer.GameRenderer;
-import net.minecraft.client.renderer.LightTexture;
+import net.minecraft.client.renderer.*;
 import net.minecraft.client.resources.sounds.SimpleSoundInstance;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
@@ -36,7 +35,7 @@ public class SettingsScreenBase extends CameraScreenBase {
     @Override
     public void render(GuiGraphics guiGraphics, int mouseX, int mouseY, float partialTicks) {
         if (opacity >= 1F) {
-            renderTransparentBackground(guiGraphics);
+            renderBlurredBackground();
         }
 
         colorBlit(guiGraphics, texture, guiLeft, guiTop, 0, 0, xSize, ySize, 256, 256, opacity);
@@ -47,9 +46,9 @@ public class SettingsScreenBase extends CameraScreenBase {
         guiGraphics.drawString(font, getTitle().getVisualOrderText(), guiLeft + (xSize - titleWidth) / 2, guiTop + 7, FONT_COLOR, false);
 
         if (visibilityArea.isHovered(guiLeft, guiTop, mouseX, mouseY)) {
-            guiGraphics.blit(VISIBILITY, guiLeft + xSize - 7 - 16, guiTop + 4, 16, 0, 16, 16, 32, 32);
+            guiGraphics.blit(RenderType::guiTextured, VISIBILITY, guiLeft + xSize - 7 - 16, guiTop + 4, 16, 0, 16, 16, 32, 32);
         } else {
-            guiGraphics.blit(VISIBILITY, guiLeft + xSize - 7 - 16, guiTop + 4, 0, 0, 16, 16, 32, 32);
+            guiGraphics.blit(RenderType::guiTextured, VISIBILITY, guiLeft + xSize - 7 - 16, guiTop + 4, 0, 0, 16, 16, 32, 32);
         }
     }
 
@@ -92,7 +91,7 @@ public class SettingsScreenBase extends CameraScreenBase {
 
     private void colorBlit(GuiGraphics guiGraphics, ResourceLocation resourceLocation, int i, int j, int k, int l, int m, float f, float g, float h, float n, float alpha) {
         RenderSystem.setShaderTexture(0, resourceLocation);
-        RenderSystem.setShader(GameRenderer::getPositionTexColorShader);
+        RenderSystem.setShader(CoreShaders.POSITION_TEX_COLOR);
         RenderSystem.enableBlend();
         Matrix4f matrix4f = guiGraphics.pose().last().pose();
         BufferBuilder bufferBuilder = Tesselator.getInstance().begin(VertexFormat.Mode.QUADS, DefaultVertexFormat.POSITION_TEX_COLOR);

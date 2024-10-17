@@ -12,8 +12,7 @@
     "CameraMixin",
     "GuiMixin",
     "CameraTypeMixin",
-    "MinecraftMixin",
-    "PlayerRendererMixin"
+    "MinecraftMixin"
   ],
   "injectors": {
     "defaultRequire": 1

@@ -25,14 +25,6 @@ public class KeyEvents {
             if (CameraUtils.THIRD_PERSON_DISTANCE.consumeClick() && isModifierDown()) {
                 openThirdPersonSettings();
             }
-            if (CameraUtils.HIDE_PLAYER.consumeClick()) {
-                ClientConfig.hidePlayer = !ClientConfig.hidePlayer;
-                if (ClientConfig.hidePlayer) {
-                    mc.player.displayClientMessage(Component.translatable("message.camerautils.player_hidden"), true);
-                } else {
-                    mc.player.displayClientMessage(Component.translatable("message.camerautils.player_unhidden"), true);
-                }
-            }
             if (CameraUtils.THIRD_PERSON_CAM_1.consumeClick()) {
                 if (isModifierDown()) {
                     openThirdPerson1Settings();
