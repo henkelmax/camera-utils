@@ -1,6 +1,5 @@
 package de.maxhenkel.camerautils.gui;
 
-import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.*;
 import de.maxhenkel.camerautils.CameraUtils;
 import net.minecraft.client.Minecraft;
@@ -90,17 +89,15 @@ public class SettingsScreenBase extends CameraScreenBase {
     }
 
     private void colorBlit(GuiGraphics guiGraphics, ResourceLocation resourceLocation, int i, int j, int k, int l, int m, float f, float g, float h, float n, float alpha) {
-        RenderSystem.setShaderTexture(0, resourceLocation);
-        RenderSystem.setShader(CoreShaders.POSITION_TEX_COLOR);
-        RenderSystem.enableBlend();
+        RenderType renderType = RenderType.guiTextured(resourceLocation);
         Matrix4f matrix4f = guiGraphics.pose().last().pose();
-        BufferBuilder bufferBuilder = Tesselator.getInstance().begin(VertexFormat.Mode.QUADS, DefaultVertexFormat.POSITION_TEX_COLOR);
-        bufferBuilder.addVertex(matrix4f, (float) i, (float) k, (float) m).setColor(1F, 1F, 1F, alpha).setUv(f, h);
-        bufferBuilder.addVertex(matrix4f, (float) i, (float) l, (float) m).setColor(1F, 1F, 1F, alpha).setUv(f, n);
-        bufferBuilder.addVertex(matrix4f, (float) j, (float) l, (float) m).setColor(1F, 1F, 1F, alpha).setUv(g, n);
-        bufferBuilder.addVertex(matrix4f, (float) j, (float) k, (float) m).setColor(1F, 1F, 1F, alpha).setUv(g, h);
-        BufferUploader.drawWithShader(bufferBuilder.buildOrThrow());
-        RenderSystem.disableBlend();
+        guiGraphics.drawSpecial(multiBufferSource -> {
+            VertexConsumer vc = multiBufferSource.getBuffer(renderType);
+            vc.addVertex(matrix4f, (float) i, (float) k, m).setColor(1F, 1F, 1F, alpha).setUv(f, h);
+            vc.addVertex(matrix4f, (float) i, (float) l, m).setColor(1F, 1F, 1F, alpha).setUv(f, n);
+            vc.addVertex(matrix4f, (float) j, (float) l, m).setColor(1F, 1F, 1F, alpha).setUv(g, n);
+            vc.addVertex(matrix4f, (float) j, (float) k, m).setColor(1F, 1F, 1F, alpha).setUv(g, h);
+        });
     }
 
 }
