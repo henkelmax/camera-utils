@@ -1,6 +1,5 @@
 package de.maxhenkel.camerautils.gui;
 
-import com.mojang.blaze3d.vertex.*;
 import de.maxhenkel.camerautils.CameraUtils;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;
@@ -9,7 +8,7 @@ import net.minecraft.client.resources.sounds.SimpleSoundInstance;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundEvents;
-import org.joml.Matrix4f;
+import net.minecraft.util.ARGB;
 
 public class SettingsScreenBase extends CameraScreenBase {
 
@@ -34,10 +33,10 @@ public class SettingsScreenBase extends CameraScreenBase {
     @Override
     public void render(GuiGraphics guiGraphics, int mouseX, int mouseY, float partialTicks) {
         if (opacity >= 1F) {
-            renderBlurredBackground();
+            renderBlurredBackground(guiGraphics);
         }
 
-        colorBlit(guiGraphics, texture, guiLeft, guiTop, 0, 0, xSize, ySize, 256, 256, opacity);
+        guiGraphics.blit(RenderPipelines.GUI_TEXTURED, texture, guiLeft, guiTop, 0F, 0F, xSize, ySize, xSize, ySize, 256, 256, ARGB.colorFromFloat(opacity, 1F, 1F, 1F));
 
         super.render(guiGraphics, mouseX, mouseY, partialTicks);
 
@@ -45,9 +44,9 @@ public class SettingsScreenBase extends CameraScreenBase {
         guiGraphics.drawString(font, getTitle().getVisualOrderText(), guiLeft + (xSize - titleWidth) / 2, guiTop + 7, FONT_COLOR, false);
 
         if (visibilityArea.isHovered(guiLeft, guiTop, mouseX, mouseY)) {
-            guiGraphics.blit(RenderType::guiTextured, VISIBILITY, guiLeft + xSize - 7 - 16, guiTop + 4, 16, 0, 16, 16, 32, 32);
+            guiGraphics.blit(RenderPipelines.GUI_TEXTURED, VISIBILITY, guiLeft + xSize - 7 - 16, guiTop + 4, 16, 0, 16, 16, 32, 32);
         } else {
-            guiGraphics.blit(RenderType::guiTextured, VISIBILITY, guiLeft + xSize - 7 - 16, guiTop + 4, 0, 0, 16, 16, 32, 32);
+            guiGraphics.blit(RenderPipelines.GUI_TEXTURED, VISIBILITY, guiLeft + xSize - 7 - 16, guiTop + 4, 0, 0, 16, 16, 32, 32);
         }
     }
 
@@ -74,30 +73,6 @@ public class SettingsScreenBase extends CameraScreenBase {
     @Override
     public boolean isPauseScreen() {
         return false;
-    }
-
-    private void colorBlit(GuiGraphics guiGraphics, ResourceLocation resourceLocation, int i, int j, float f, float g, int k, int l, int m, int n, float alpha) {
-        colorBlit(guiGraphics, resourceLocation, i, j, k, l, f, g, k, l, m, n, alpha);
-    }
-
-    private void colorBlit(GuiGraphics guiGraphics, ResourceLocation resourceLocation, int i, int j, int k, int l, float f, float g, int m, int n, int o, int p, float alpha) {
-        colorBlit(guiGraphics, resourceLocation, i, i + k, j, j + l, 0, m, n, f, g, o, p, alpha);
-    }
-
-    private void colorBlit(GuiGraphics guiGraphics, ResourceLocation resourceLocation, int i, int j, int k, int l, int m, int n, int o, float f, float g, int p, int q, float alpha) {
-        colorBlit(guiGraphics, resourceLocation, i, j, k, l, m, f / (float) p, (f + (float) n) / (float) p, g / (float) q, (g + (float) o) / (float) q, alpha);
-    }
-
-    private void colorBlit(GuiGraphics guiGraphics, ResourceLocation resourceLocation, int i, int j, int k, int l, int m, float f, float g, float h, float n, float alpha) {
-        RenderType renderType = RenderType.guiTextured(resourceLocation);
-        Matrix4f matrix4f = guiGraphics.pose().last().pose();
-        guiGraphics.drawSpecial(multiBufferSource -> {
-            VertexConsumer vc = multiBufferSource.getBuffer(renderType);
-            vc.addVertex(matrix4f, (float) i, (float) k, m).setColor(1F, 1F, 1F, alpha).setUv(f, h);
-            vc.addVertex(matrix4f, (float) i, (float) l, m).setColor(1F, 1F, 1F, alpha).setUv(f, n);
-            vc.addVertex(matrix4f, (float) j, (float) l, m).setColor(1F, 1F, 1F, alpha).setUv(g, n);
-            vc.addVertex(matrix4f, (float) j, (float) k, m).setColor(1F, 1F, 1F, alpha).setUv(g, h);
-        });
     }
 
 }
