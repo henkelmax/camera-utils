@@ -22,7 +22,7 @@ public class KeyEvents {
             if (CameraUtils.ZOOM.consumeClick() && isModifierDown()) {
                 openZoomSettings();
             }
-            if (CameraUtils.THIRD_PERSON_DISTANCE.consumeClick() && isModifierDown()) {
+            if (CameraUtils.THIRD_PERSON_OFFSET.consumeClick() && isModifierDown()) {
                 openThirdPersonSettings();
             }
             if (CameraUtils.THIRD_PERSON_CAM_1.consumeClick()) {
@@ -80,13 +80,13 @@ public class KeyEvents {
     }
 
     public boolean onScroll(double amount) {
-        if (CameraUtils.THIRD_PERSON_DISTANCE.isDown() && !mc.options.getCameraType().isFirstPerson() && CameraUtils.CLIENT_CONFIG.thirdPersonCam < 0) {
-            double distance = CameraUtils.CLIENT_CONFIG.thirdPersonDistance.get();
-            double sensitivity = CameraUtils.CLIENT_CONFIG.thirdPersonDistanceSensitivity.get();
-            distance = Math.max(0D, Math.min(100D, distance + (-amount * sensitivity)));
-            CameraUtils.CLIENT_CONFIG.thirdPersonDistance.set(distance);
-            CameraUtils.CLIENT_CONFIG.thirdPersonDistance.save();
-            mc.player.displayClientMessage(Component.translatable("message.camerautils.third_person_distance", Utils.round(distance, 2)), true);
+        if (CameraUtils.THIRD_PERSON_OFFSET.isDown() && !mc.options.getCameraType().isFirstPerson() && ClientConfig.thirdPersonCam < 0) {
+            double distance = CameraUtils.CLIENT_CONFIG.thirdPersonOffset.get();
+            double sensitivity = CameraUtils.CLIENT_CONFIG.thirdPersonOffsetSensitivity.get();
+            distance = Math.max(-32D, Math.min(32D, distance + (-amount * sensitivity)));
+            CameraUtils.CLIENT_CONFIG.thirdPersonOffset.set(distance);
+            CameraUtils.CLIENT_CONFIG.thirdPersonOffset.save();
+            mc.player.displayClientMessage(Component.translatable("message.camerautils.third_person_offset", Utils.round(distance, 2)), true);
             return true;
         }
         if (CameraUtils.ZOOM.isDown()) {

@@ -25,7 +25,7 @@ public class CameraUtils implements ClientModInitializer {
     public static KeyMapping ZOOM;
     public static KeyMapping THIRD_PERSON_CAM_1;
     public static KeyMapping THIRD_PERSON_CAM_2;
-    public static KeyMapping THIRD_PERSON_DISTANCE;
+    public static KeyMapping THIRD_PERSON_OFFSET;
     public static KeyMapping DETACH_CAMERA;
     public static KeyMapping ZOOM_ANIMATION;
 
@@ -43,7 +43,7 @@ public class CameraUtils implements ClientModInitializer {
         ZOOM = KeyBindingHelper.registerKeyBinding(new KeyMapping("key.camerautils.zoom", GLFW.GLFW_KEY_Z, "key.categories.camerautils"));
         THIRD_PERSON_CAM_1 = KeyBindingHelper.registerKeyBinding(new KeyMapping("key.camerautils.third_person_cam_1", GLFW.GLFW_KEY_F6, "key.categories.camerautils"));
         THIRD_PERSON_CAM_2 = KeyBindingHelper.registerKeyBinding(new KeyMapping("key.camerautils.third_person_cam_2", GLFW.GLFW_KEY_F7, "key.categories.camerautils"));
-        THIRD_PERSON_DISTANCE = KeyBindingHelper.registerKeyBinding(new KeyMapping("key.camerautils.third_person_distance", InputConstants.UNKNOWN.getValue(), "key.categories.camerautils"));
+        THIRD_PERSON_OFFSET = KeyBindingHelper.registerKeyBinding(new KeyMapping("key.camerautils.third_person_offset", InputConstants.UNKNOWN.getValue(), "key.categories.camerautils"));
         DETACH_CAMERA = KeyBindingHelper.registerKeyBinding(new KeyMapping("key.camerautils.detach_camera", InputConstants.UNKNOWN.getValue(), "key.categories.camerautils"));
         ZOOM_ANIMATION = KeyBindingHelper.registerKeyBinding(new KeyMapping("key.camerautils.zoom_animation", InputConstants.UNKNOWN.getValue(), "key.categories.camerautils"));
 

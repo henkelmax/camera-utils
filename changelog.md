@@ -1,1 +1,2 @@
-- Updated to 1.21.7
+- Replaced third person distance with third person offset
+- Fixed happy ghast third person distance
