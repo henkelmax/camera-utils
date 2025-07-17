@@ -3,7 +3,9 @@ package de.maxhenkel.camerautils.mixin;
 import de.maxhenkel.camerautils.CameraUtils;
 import de.maxhenkel.camerautils.config.ClientConfig;
 import net.minecraft.client.Camera;
-import net.minecraft.client.Minecraft;
+import net.minecraft.core.Holder;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.ai.attributes.Attribute;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
@@ -31,11 +33,18 @@ public abstract class CameraMixin {
             boolean inverted = CameraUtils.CLIENT_CONFIG.thirdPersonInverted2.get();
             move(CameraUtils.CLIENT_CONFIG.thirdPersonOffsetX2.get().floatValue(), CameraUtils.CLIENT_CONFIG.thirdPersonOffsetY2.get().floatValue(), CameraUtils.CLIENT_CONFIG.thirdPersonOffsetZ2.get().floatValue());
             setRotation(yRot + (inverted ? 180F : 0F), CameraUtils.CLIENT_CONFIG.thirdPersonRotationX2.get().floatValue() + (inverted ? -xRot : xRot));
-        } else if (!Minecraft.getInstance().options.getCameraType().isFirstPerson()) {
-            move(-getMaxZoom(CameraUtils.CLIENT_CONFIG.thirdPersonDistance.get().floatValue()), 0F, 0F);
         } else {
-            move(-getMaxZoom(4F), 0F, 0F);
+            move(f, g, h);
         }
+    }
+
+    @Redirect(method = "setup", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/entity/LivingEntity;getAttributeValue(Lnet/minecraft/core/Holder;)D"))
+    private double getAttributeValue(LivingEntity instance, Holder<Attribute> attribute) {
+        double distance = instance.getAttributeValue(attribute);
+        distance = distance + CameraUtils.CLIENT_CONFIG.thirdPersonOffset.get();
+        distance = Math.max(0D, distance);
+        distance = Math.min(32D, distance);
+        return distance;
     }
 
     @Inject(method = "setup", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/Camera;setPosition(DDD)V", shift = At.Shift.AFTER))
