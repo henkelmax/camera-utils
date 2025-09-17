@@ -10,7 +10,7 @@ import java.util.function.Supplier;
 
 public class CameraScreenBase extends Screen {
 
-    protected static final int FONT_COLOR = 4210752;
+    protected static final int FONT_COLOR = 0xFF404040;
 
     protected int guiLeft;
     protected int guiTop;
