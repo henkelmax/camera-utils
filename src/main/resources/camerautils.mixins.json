@@ -6,13 +6,13 @@
   "mixins": [
   ],
   "client": [
-    "MouseHandlerMixin",
     "AbstractClientPlayerMixin",
-    "GameRendererMixin",
     "CameraMixin",
-    "GuiMixin",
     "CameraTypeMixin",
-    "MinecraftMixin"
+    "GameRendererMixin",
+    "GuiMixin",
+    "MinecraftMixin",
+    "MouseHandlerMixin"
   ],
   "injectors": {
     "defaultRequire": 1

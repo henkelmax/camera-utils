@@ -3,6 +3,7 @@ package de.maxhenkel.camerautils.gui;
 import de.maxhenkel.camerautils.CameraUtils;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;
+import net.minecraft.client.input.MouseButtonEvent;
 import net.minecraft.client.renderer.*;
 import net.minecraft.client.resources.sounds.SimpleSoundInstance;
 import net.minecraft.network.chat.Component;
@@ -56,8 +57,8 @@ public class SettingsScreenBase extends CameraScreenBase {
     }
 
     @Override
-    public boolean mouseClicked(double d, double e, int i) {
-        if (visibilityArea.isHovered(guiLeft, guiTop, (int) d, (int) e)) {
+    public boolean mouseClicked(MouseButtonEvent mouseButtonEvent, boolean bl) {
+        if (visibilityArea.isHovered(guiLeft, guiTop, (int) mouseButtonEvent.x(), (int) mouseButtonEvent.y())) {
             opacity -= 0.25F;
             if (opacity < 0F) {
                 opacity = 1F;
@@ -67,7 +68,7 @@ public class SettingsScreenBase extends CameraScreenBase {
             Minecraft.getInstance().getSoundManager().play(SimpleSoundInstance.forUI(SoundEvents.UI_BUTTON_CLICK, 1F));
             return true;
         }
-        return super.mouseClicked(d, e, i);
+        return super.mouseClicked(mouseButtonEvent, bl);
     }
 
     @Override

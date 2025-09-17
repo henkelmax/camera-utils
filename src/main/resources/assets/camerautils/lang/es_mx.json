@@ -1,6 +1,6 @@
 {
-  "key.categories.camerautils": "Camera Utils",
-  "key.categories.camerautils_settings": "Configuración de Camera Utils",
+  "key.category.camerautils.camerautils": "Camera Utils",
+  "key.category.camerautils.camerautils_settings": "Configuración de Camera Utils",
   "key.camerautils.zoom": "Zoom",
   "key.camerautils.third_person_cam_1": "Cámara en Tercera Persona Personalizada 1",
   "key.camerautils.third_person_cam_2": "Cámara en Tercera Persona Personalizada 2",

@@ -1,14 +1,11 @@
 package de.maxhenkel.camerautils;
 
-import com.mojang.blaze3d.platform.InputConstants;
 import de.maxhenkel.camerautils.config.ClientConfig;
 import de.maxhenkel.camerautils.gui.*;
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
 import net.minecraft.client.CameraType;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.network.chat.Component;
-import org.lwjgl.glfw.GLFW;
 
 public class KeyEvents {
 
@@ -207,9 +204,9 @@ public class KeyEvents {
 
     public static boolean isModifierDown() {
         if (CameraUtils.CLIENT_CONFIG.modifierKey.get().equals(ClientConfig.ModifierKey.CTRL)) {
-            return Screen.hasControlDown();
+            return mc.hasControlDown();
         } else {
-            return InputConstants.isKeyDown(mc.getWindow().getWindow(), GLFW.GLFW_KEY_RIGHT_ALT);
+            return mc.hasAltDown();
         }
     }
 

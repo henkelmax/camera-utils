@@ -52,7 +52,7 @@ public abstract class MouseHandlerMixin {
 
     @Inject(at = @At("HEAD"), method = "onScroll", cancellable = true)
     private void onScroll(long window, double d, double amount, CallbackInfo info) {
-        if (window != Minecraft.getInstance().getWindow().getWindow()) {
+        if (window != Minecraft.getInstance().getWindow().handle()) {
             return;
         }
         if (CameraUtils.KEY_EVENTS.onScroll(amount)) {

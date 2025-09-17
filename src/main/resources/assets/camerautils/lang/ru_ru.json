@@ -1,6 +1,6 @@
 {
-  "key.categories.camerautils": "Утилиты камеры",
-  "key.categories.camerautils_settings": "Настройки утилит камеры",
+  "key.category.camerautils.camerautils": "Утилиты камеры",
+  "key.category.camerautils.camerautils_settings": "Настройки утилит камеры",
   "key.camerautils.zoom": "Масштабирование",
   "key.camerautils.third_person_cam_1": "Пользовательский вид от третьего лица 1",
   "key.camerautils.third_person_cam_2": "Пользовательский вид от третьего лица 2",
