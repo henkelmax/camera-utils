@@ -1,1 +1,1 @@
-- Updated to 1.21.10
+- Added more allowed modifier keys: `LEFT_CTRL`, `RIGHT_CTRL`, `CTRL`, `LEFT_ALT`, `RIGHT_ALT`, `ALT`, `LEFT_SHIFT`, `RIGHT_SHIFT`, `SHIFT`

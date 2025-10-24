@@ -62,7 +62,11 @@ public class ClientConfig {
         thirdPersonInverted2 = builder.booleanEntry("third_person_cam_2_inverted", false);
         thirdPersonHideGui2 = builder.booleanEntry("third_person_cam_2_hide_gui", false);
         thirdPersonRotationX2 = builder.doubleEntry("third_person_cam_2_rotation_x", 0D, -90D, 90D);
-        modifierKey = builder.enumEntry("modifier_key", ModifierKey.RIGHT_ALT);
+        modifierKey = builder.enumEntry(
+                "modifier_key",
+                ModifierKey.RIGHT_ALT,
+                "Possible values are: LEFT_CTRL, RIGHT_CTRL, CTRL, LEFT_ALT, RIGHT_ALT, ALT, LEFT_SHIFT, RIGHT_SHIFT, SHIFT"
+        );
         guiOpacity = builder.doubleEntry("gui_opacity", 1D, 0D, 1D);
         zoomAnimationFrom = builder.doubleEntry("zoom_animation_from", 1D, 0.01D, 2D);
         zoomAnimationTo = builder.doubleEntry("zoom_animation_to", 0.1D, 0.01D, 2D);
@@ -70,7 +74,7 @@ public class ClientConfig {
     }
 
     public static enum ModifierKey {
-        CTRL, RIGHT_ALT
+        LEFT_CTRL, RIGHT_CTRL, CTRL, LEFT_ALT, RIGHT_ALT, ALT, LEFT_SHIFT, RIGHT_SHIFT, SHIFT
     }
 
 }
