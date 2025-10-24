@@ -1,12 +1,12 @@
 package de.maxhenkel.camerautils;
 
 import com.mojang.blaze3d.platform.InputConstants;
-import com.mojang.blaze3d.platform.Window;
 import de.maxhenkel.camerautils.config.ClientConfig;
 import de.maxhenkel.camerautils.gui.*;
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
 import net.minecraft.client.CameraType;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.network.chat.Component;
 import org.lwjgl.glfw.GLFW;
 
@@ -206,18 +206,18 @@ public class KeyEvents {
     }
 
     public static boolean isModifierDown() {
-        Window window = mc.getWindow();
+        long window = mc.getWindow().getWindow();
         ClientConfig.ModifierKey modifierKey = CameraUtils.CLIENT_CONFIG.modifierKey.get();
         return switch (modifierKey) {
             case LEFT_CTRL -> InputConstants.isKeyDown(window, GLFW.GLFW_KEY_LEFT_CONTROL);
             case RIGHT_CTRL -> InputConstants.isKeyDown(window, GLFW.GLFW_KEY_RIGHT_CONTROL);
-            case CTRL -> mc.hasControlDown();
+            case CTRL -> Screen.hasControlDown();
             case LEFT_ALT -> InputConstants.isKeyDown(window, GLFW.GLFW_KEY_LEFT_ALT);
             case RIGHT_ALT -> InputConstants.isKeyDown(window, GLFW.GLFW_KEY_RIGHT_ALT);
-            case ALT -> mc.hasAltDown();
+            case ALT -> Screen.hasAltDown();
             case LEFT_SHIFT -> InputConstants.isKeyDown(window, GLFW.GLFW_KEY_LEFT_SHIFT);
             case RIGHT_SHIFT -> InputConstants.isKeyDown(window, GLFW.GLFW_KEY_RIGHT_SHIFT);
-            case SHIFT -> mc.hasShiftDown();
+            case SHIFT -> Screen.hasShiftDown();
         };
     }
 
