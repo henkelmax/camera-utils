@@ -4,11 +4,11 @@ import de.maxhenkel.camerautils.CameraUtils;
 import de.maxhenkel.camerautils.Utils;
 import net.minecraft.client.gui.components.Button;
 import net.minecraft.network.chat.Component;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 
 public class ZoomScreen extends SettingsScreenBase {
 
-    private static final ResourceLocation TEXTURE = ResourceLocation.fromNamespaceAndPath(CameraUtils.MODID, "textures/gui/generic_3.png");
+    private static final Identifier TEXTURE = Identifier.fromNamespaceAndPath(CameraUtils.MODID, "textures/gui/generic_3.png");
 
     public ZoomScreen() {
         super(Component.translatable("gui.camerautils.zoom.title"), TEXTURE, 248, 104);

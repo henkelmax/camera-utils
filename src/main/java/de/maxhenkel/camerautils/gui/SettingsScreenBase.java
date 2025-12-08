@@ -7,19 +7,19 @@ import net.minecraft.client.input.MouseButtonEvent;
 import net.minecraft.client.renderer.*;
 import net.minecraft.client.resources.sounds.SimpleSoundInstance;
 import net.minecraft.network.chat.Component;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.util.ARGB;
 
 public class SettingsScreenBase extends CameraScreenBase {
 
-    private static final ResourceLocation VISIBILITY = ResourceLocation.fromNamespaceAndPath(CameraUtils.MODID, "textures/visibility.png");
-    protected ResourceLocation texture;
+    private static final Identifier VISIBILITY = Identifier.fromNamespaceAndPath(CameraUtils.MODID, "textures/visibility.png");
+    protected Identifier texture;
 
     private HoverArea visibilityArea;
     private float opacity;
 
-    public SettingsScreenBase(Component title, ResourceLocation texture, int xSize, int ySize) {
+    public SettingsScreenBase(Component title, Identifier texture, int xSize, int ySize) {
         super(title, xSize, ySize);
         this.texture = texture;
         this.opacity = CameraUtils.CLIENT_CONFIG.guiOpacity.get().floatValue();

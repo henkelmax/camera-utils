@@ -9,7 +9,7 @@ import net.fabricmc.api.Environment;
 import net.fabricmc.fabric.api.client.keybinding.v1.KeyBindingHelper;
 import net.minecraft.client.KeyMapping;
 import net.minecraft.client.Minecraft;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.lwjgl.glfw.GLFW;
@@ -44,8 +44,8 @@ public class CameraUtils implements ClientModInitializer {
     public void onInitializeClient() {
         KEY_EVENTS = new KeyEvents();
 
-        CATEGORY_CAMERAUTILS = KeyMapping.Category.register(ResourceLocation.fromNamespaceAndPath(MODID, "camerautils"));
-        CATEGORY_CAMERAUTILS_SETTINGS = KeyMapping.Category.register(ResourceLocation.fromNamespaceAndPath(MODID, "camerautils_settings"));
+        CATEGORY_CAMERAUTILS = KeyMapping.Category.register(Identifier.fromNamespaceAndPath(MODID, "camerautils"));
+        CATEGORY_CAMERAUTILS_SETTINGS = KeyMapping.Category.register(Identifier.fromNamespaceAndPath(MODID, "camerautils_settings"));
 
         ZOOM = KeyBindingHelper.registerKeyBinding(new KeyMapping("key.camerautils.zoom", GLFW.GLFW_KEY_Z, CATEGORY_CAMERAUTILS));
         THIRD_PERSON_CAM_1 = KeyBindingHelper.registerKeyBinding(new KeyMapping("key.camerautils.third_person_cam_1", GLFW.GLFW_KEY_F6, CATEGORY_CAMERAUTILS));
