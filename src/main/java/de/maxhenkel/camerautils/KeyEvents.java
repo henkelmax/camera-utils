@@ -86,7 +86,7 @@ public class KeyEvents {
             distance = Math.max(-32D, Math.min(32D, distance + (-amount * sensitivity)));
             CameraUtils.CLIENT_CONFIG.thirdPersonOffset.set(distance);
             CameraUtils.CLIENT_CONFIG.thirdPersonOffset.save();
-            mc.player.displayClientMessage(Component.translatable("message.camerautils.third_person_offset", Utils.round(distance, 2)), true);
+            mc.player.sendOverlayMessage(Component.translatable("message.camerautils.third_person_offset", Utils.round(distance, 2)));
             return true;
         }
         if (CameraUtils.ZOOM.isDown()) {
@@ -95,7 +95,7 @@ public class KeyEvents {
             zoom = Math.max(0D, Math.min(2D, zoom + (-amount * zoomSensitivity)));
             CameraUtils.CLIENT_CONFIG.zoom.set(zoom);
             CameraUtils.CLIENT_CONFIG.zoom.save();
-            mc.player.displayClientMessage(Component.translatable("message.camerautils.zoom", Math.round((1D - zoom) * 100D)), true);
+            mc.player.sendOverlayMessage(Component.translatable("message.camerautils.zoom", Math.round((1D - zoom) * 100D)));
             return true;
         }
         return false;

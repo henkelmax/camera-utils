@@ -6,7 +6,7 @@ import de.maxhenkel.configbuilder.ConfigBuilder;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
-import net.fabricmc.fabric.api.client.keybinding.v1.KeyBindingHelper;
+import net.fabricmc.fabric.api.client.keymapping.v1.KeyMappingHelper;
 import net.minecraft.client.KeyMapping;
 import net.minecraft.client.Minecraft;
 import net.minecraft.resources.Identifier;
@@ -47,19 +47,19 @@ public class CameraUtils implements ClientModInitializer {
         CATEGORY_CAMERAUTILS = KeyMapping.Category.register(Identifier.fromNamespaceAndPath(MODID, "camerautils"));
         CATEGORY_CAMERAUTILS_SETTINGS = KeyMapping.Category.register(Identifier.fromNamespaceAndPath(MODID, "camerautils_settings"));
 
-        ZOOM = KeyBindingHelper.registerKeyBinding(new KeyMapping("key.camerautils.zoom", GLFW.GLFW_KEY_Z, CATEGORY_CAMERAUTILS));
-        THIRD_PERSON_CAM_1 = KeyBindingHelper.registerKeyBinding(new KeyMapping("key.camerautils.third_person_cam_1", GLFW.GLFW_KEY_F6, CATEGORY_CAMERAUTILS));
-        THIRD_PERSON_CAM_2 = KeyBindingHelper.registerKeyBinding(new KeyMapping("key.camerautils.third_person_cam_2", GLFW.GLFW_KEY_F7, CATEGORY_CAMERAUTILS));
-        THIRD_PERSON_OFFSET = KeyBindingHelper.registerKeyBinding(new KeyMapping("key.camerautils.third_person_offset", InputConstants.UNKNOWN.getValue(), CATEGORY_CAMERAUTILS));
-        DETACH_CAMERA = KeyBindingHelper.registerKeyBinding(new KeyMapping("key.camerautils.detach_camera", InputConstants.UNKNOWN.getValue(), CATEGORY_CAMERAUTILS));
-        ZOOM_ANIMATION = KeyBindingHelper.registerKeyBinding(new KeyMapping("key.camerautils.zoom_animation", InputConstants.UNKNOWN.getValue(), CATEGORY_CAMERAUTILS));
+        ZOOM = KeyMappingHelper.registerKeyMapping(new KeyMapping("key.camerautils.zoom", GLFW.GLFW_KEY_Z, CATEGORY_CAMERAUTILS));
+        THIRD_PERSON_CAM_1 = KeyMappingHelper.registerKeyMapping(new KeyMapping("key.camerautils.third_person_cam_1", GLFW.GLFW_KEY_F6, CATEGORY_CAMERAUTILS));
+        THIRD_PERSON_CAM_2 = KeyMappingHelper.registerKeyMapping(new KeyMapping("key.camerautils.third_person_cam_2", GLFW.GLFW_KEY_F7, CATEGORY_CAMERAUTILS));
+        THIRD_PERSON_OFFSET = KeyMappingHelper.registerKeyMapping(new KeyMapping("key.camerautils.third_person_offset", InputConstants.UNKNOWN.getValue(), CATEGORY_CAMERAUTILS));
+        DETACH_CAMERA = KeyMappingHelper.registerKeyMapping(new KeyMapping("key.camerautils.detach_camera", InputConstants.UNKNOWN.getValue(), CATEGORY_CAMERAUTILS));
+        ZOOM_ANIMATION = KeyMappingHelper.registerKeyMapping(new KeyMapping("key.camerautils.zoom_animation", InputConstants.UNKNOWN.getValue(), CATEGORY_CAMERAUTILS));
 
-        CINEMATIC_CAMERA_GUI = KeyBindingHelper.registerKeyBinding(new KeyMapping("key.camerautils.cinematic_camera_settings", InputConstants.UNKNOWN.getValue(), CATEGORY_CAMERAUTILS_SETTINGS));
-        THIRD_PERSON_CAMERA_1_GUI = KeyBindingHelper.registerKeyBinding(new KeyMapping("key.camerautils.third_person_camera_1_settings", InputConstants.UNKNOWN.getValue(), CATEGORY_CAMERAUTILS_SETTINGS));
-        THIRD_PERSON_CAMERA_2_GUI = KeyBindingHelper.registerKeyBinding(new KeyMapping("key.camerautils.third_person_camera_2_settings", InputConstants.UNKNOWN.getValue(), CATEGORY_CAMERAUTILS_SETTINGS));
-        THIRD_PERSON_GUI = KeyBindingHelper.registerKeyBinding(new KeyMapping("key.camerautils.third_person_settings", InputConstants.UNKNOWN.getValue(), CATEGORY_CAMERAUTILS_SETTINGS));
-        ZOOM_GUI = KeyBindingHelper.registerKeyBinding(new KeyMapping("key.camerautils.zoom_settings", InputConstants.UNKNOWN.getValue(), CATEGORY_CAMERAUTILS_SETTINGS));
-        ZOOM_ANIMATION_GUI = KeyBindingHelper.registerKeyBinding(new KeyMapping("key.camerautils.zoom_animation_settings", InputConstants.UNKNOWN.getValue(), CATEGORY_CAMERAUTILS_SETTINGS));
+        CINEMATIC_CAMERA_GUI = KeyMappingHelper.registerKeyMapping(new KeyMapping("key.camerautils.cinematic_camera_settings", InputConstants.UNKNOWN.getValue(), CATEGORY_CAMERAUTILS_SETTINGS));
+        THIRD_PERSON_CAMERA_1_GUI = KeyMappingHelper.registerKeyMapping(new KeyMapping("key.camerautils.third_person_camera_1_settings", InputConstants.UNKNOWN.getValue(), CATEGORY_CAMERAUTILS_SETTINGS));
+        THIRD_PERSON_CAMERA_2_GUI = KeyMappingHelper.registerKeyMapping(new KeyMapping("key.camerautils.third_person_camera_2_settings", InputConstants.UNKNOWN.getValue(), CATEGORY_CAMERAUTILS_SETTINGS));
+        THIRD_PERSON_GUI = KeyMappingHelper.registerKeyMapping(new KeyMapping("key.camerautils.third_person_settings", InputConstants.UNKNOWN.getValue(), CATEGORY_CAMERAUTILS_SETTINGS));
+        ZOOM_GUI = KeyMappingHelper.registerKeyMapping(new KeyMapping("key.camerautils.zoom_settings", InputConstants.UNKNOWN.getValue(), CATEGORY_CAMERAUTILS_SETTINGS));
+        ZOOM_ANIMATION_GUI = KeyMappingHelper.registerKeyMapping(new KeyMapping("key.camerautils.zoom_animation_settings", InputConstants.UNKNOWN.getValue(), CATEGORY_CAMERAUTILS_SETTINGS));
 
         Minecraft mc = Minecraft.getInstance();
         CLIENT_CONFIG = ConfigBuilder

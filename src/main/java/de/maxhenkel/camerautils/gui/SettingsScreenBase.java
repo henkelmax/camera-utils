@@ -2,7 +2,7 @@ package de.maxhenkel.camerautils.gui;
 
 import de.maxhenkel.camerautils.CameraUtils;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.GuiGraphics;
+import net.minecraft.client.gui.GuiGraphicsExtractor;
 import net.minecraft.client.input.MouseButtonEvent;
 import net.minecraft.client.renderer.*;
 import net.minecraft.client.resources.sounds.SimpleSoundInstance;
@@ -32,17 +32,17 @@ public class SettingsScreenBase extends CameraScreenBase {
     }
 
     @Override
-    public void render(GuiGraphics guiGraphics, int mouseX, int mouseY, float partialTicks) {
+    public void extractRenderState(GuiGraphicsExtractor guiGraphics, int mouseX, int mouseY, float partialTicks) {
         if (opacity >= 1F) {
-            renderBlurredBackground(guiGraphics);
+            extractBlurredBackground(guiGraphics);
         }
 
         guiGraphics.blit(RenderPipelines.GUI_TEXTURED, texture, guiLeft, guiTop, 0F, 0F, xSize, ySize, xSize, ySize, 256, 256, ARGB.colorFromFloat(opacity, 1F, 1F, 1F));
 
-        super.render(guiGraphics, mouseX, mouseY, partialTicks);
+        super.extractRenderState(guiGraphics, mouseX, mouseY, partialTicks);
 
         int titleWidth = font.width(getTitle());
-        guiGraphics.drawString(font, getTitle().getVisualOrderText(), guiLeft + (xSize - titleWidth) / 2, guiTop + 7, FONT_COLOR, false);
+        guiGraphics.text(font, getTitle().getVisualOrderText(), guiLeft + (xSize - titleWidth) / 2, guiTop + 7, FONT_COLOR, false);
 
         if (visibilityArea.isHovered(guiLeft, guiTop, mouseX, mouseY)) {
             guiGraphics.blit(RenderPipelines.GUI_TEXTURED, VISIBILITY, guiLeft + xSize - 7 - 16, guiTop + 4, 16, 0, 16, 16, 32, 32);
@@ -52,7 +52,7 @@ public class SettingsScreenBase extends CameraScreenBase {
     }
 
     @Override
-    public void renderBackground(GuiGraphics guiGraphics, int i, int j, float f) {
+    public void extractBackground(GuiGraphicsExtractor guiGraphics, int i, int j, float f) {
 
     }
 

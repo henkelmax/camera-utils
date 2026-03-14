@@ -21,7 +21,7 @@ public abstract class CameraMixin {
     @Shadow
     private float yRot;
 
-    @Redirect(method = "setup", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/Camera;move(FFF)V", ordinal = 0))
+    @Redirect(method = "alignWithEntity", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/Camera;move(FFF)V", ordinal = 0))
     private void move(Camera instance, float f, float g, float h) {
         if (ClientConfig.detached) {
             //Don't move with detached cam
@@ -38,7 +38,7 @@ public abstract class CameraMixin {
         }
     }
 
-    @Redirect(method = "setup", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/entity/LivingEntity;getAttributeValue(Lnet/minecraft/core/Holder;)D"))
+    @Redirect(method = "alignWithEntity", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/entity/LivingEntity;getAttributeValue(Lnet/minecraft/core/Holder;)D"))
     private double getAttributeValue(LivingEntity instance, Holder<Attribute> attribute) {
         double distance = instance.getAttributeValue(attribute);
         distance = distance + CameraUtils.CLIENT_CONFIG.thirdPersonOffset.get();
@@ -47,7 +47,7 @@ public abstract class CameraMixin {
         return distance;
     }
 
-    @Inject(method = "setup", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/Camera;setPosition(DDD)V", shift = At.Shift.AFTER))
+    @Inject(method = "alignWithEntity", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/Camera;setPosition(DDD)V", shift = At.Shift.AFTER))
     private void setPosition(CallbackInfo ci) {
         if (ClientConfig.detached) {
             setRotation(ClientConfig.yRot, ClientConfig.xRot);
@@ -57,9 +57,6 @@ public abstract class CameraMixin {
 
     @Shadow
     protected abstract void move(float d, float e, float f);
-
-    @Shadow
-    protected abstract float getMaxZoom(float d);
 
     @Shadow
     protected abstract void setRotation(float f, float g);
