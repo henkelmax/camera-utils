@@ -44,7 +44,7 @@ public class ZoomAnimationScreen extends SettingsScreenBase {
             CameraUtils.CLIENT_CONFIG.zoomAnimationTo.save();
             CameraUtils.CLIENT_CONFIG.zoomAnimationDuration.reset();
             CameraUtils.CLIENT_CONFIG.zoomAnimationDuration.save();
-            minecraft.setScreen(new ZoomAnimationScreen());
+            minecraft.setScreenAndShow(new ZoomAnimationScreen());
         }).bounds(guiLeft + 10, guiTop + 7 + font.lineHeight + 10 + 25 * 3, xSize - 20, 20).build());
     }
 

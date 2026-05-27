@@ -37,7 +37,7 @@ public class ThirdPersonScreen extends SettingsScreenBase {
             CameraUtils.CLIENT_CONFIG.thirdPersonOffsetSensitivity.save();
             CameraUtils.CLIENT_CONFIG.thirdPersonOffset.reset();
             CameraUtils.CLIENT_CONFIG.thirdPersonOffset.save();
-            minecraft.setScreen(new ThirdPersonScreen());
+            minecraft.setScreenAndShow(new ThirdPersonScreen());
         }).bounds(guiLeft + 10, guiTop + 7 + font.lineHeight + 10 + 25 * 2, xSize - 20, 20).build());
     }
 

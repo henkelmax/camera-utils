@@ -10,7 +10,7 @@
     "CameraMixin",
     "CameraTypeMixin",
     "GameRendererMixin",
-    "GuiMixin",
+    "HudMixin",
     "MinecraftMixin",
     "MouseHandlerMixin"
   ],

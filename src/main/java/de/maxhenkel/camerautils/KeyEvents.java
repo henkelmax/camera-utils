@@ -119,28 +119,35 @@ public class KeyEvents {
             ClientConfig.thirdPersonCam = -1;
             if (value == 0) {
                 if (CameraUtils.CLIENT_CONFIG.thirdPersonHideGui1.get()) {
-                    mc.options.hideGui = false;
+                    setGuiHidden(false);
                 }
             } else if (value == 1) {
                 if (CameraUtils.CLIENT_CONFIG.thirdPersonHideGui2.get()) {
-                    mc.options.hideGui = false;
+                    setGuiHidden(false);
                 }
             }
         } else {
             ClientConfig.thirdPersonCam = value;
             if (value == 0) {
                 if (CameraUtils.CLIENT_CONFIG.thirdPersonHideGui1.get()) {
-                    mc.options.hideGui = true;
+                    setGuiHidden(true);
                 }
             } else if (value == 1) {
                 if (CameraUtils.CLIENT_CONFIG.thirdPersonHideGui2.get()) {
-                    mc.options.hideGui = true;
+                    setGuiHidden(true);
                 }
             }
         }
         mc.options.setCameraType(CameraType.FIRST_PERSON);
 
         checkPostEffect();
+    }
+
+    private void setGuiHidden(boolean hidden) {
+        if (hidden == mc.gui.hud.isHidden()) {
+            return;
+        }
+        mc.gui.hud.toggle();
     }
 
     private void toggleDetachCamera() {
@@ -168,11 +175,11 @@ public class KeyEvents {
     }
 
     public void openCinematicCameraSettings() {
-        mc.setScreen(new CinematicCameraScreen());
+        mc.setScreenAndShow(new CinematicCameraScreen());
     }
 
     public void openThirdPerson1Settings() {
-        mc.setScreen(new ThirdPersonCameraScreen(0,
+        mc.setScreenAndShow(new ThirdPersonCameraScreen(0,
                 CameraUtils.CLIENT_CONFIG.thirdPersonOffsetX1,
                 CameraUtils.CLIENT_CONFIG.thirdPersonOffsetY1,
                 CameraUtils.CLIENT_CONFIG.thirdPersonOffsetZ1,
@@ -183,7 +190,7 @@ public class KeyEvents {
     }
 
     public void openThirdPerson2Settings() {
-        mc.setScreen(new ThirdPersonCameraScreen(1,
+        mc.setScreenAndShow(new ThirdPersonCameraScreen(1,
                 CameraUtils.CLIENT_CONFIG.thirdPersonOffsetX2,
                 CameraUtils.CLIENT_CONFIG.thirdPersonOffsetY2,
                 CameraUtils.CLIENT_CONFIG.thirdPersonOffsetZ2,
@@ -194,15 +201,15 @@ public class KeyEvents {
     }
 
     public void openThirdPersonSettings() {
-        mc.setScreen(new ThirdPersonScreen());
+        mc.setScreenAndShow(new ThirdPersonScreen());
     }
 
     public void openZoomSettings() {
-        mc.setScreen(new ZoomScreen());
+        mc.setScreenAndShow(new ZoomScreen());
     }
 
     public void openZoomAnimationSettings() {
-        mc.setScreen(new ZoomAnimationScreen());
+        mc.setScreenAndShow(new ZoomAnimationScreen());
     }
 
     public static boolean isModifierDown() {
