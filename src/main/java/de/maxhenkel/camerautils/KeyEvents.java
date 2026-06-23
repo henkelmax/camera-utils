@@ -175,11 +175,11 @@ public class KeyEvents {
     }
 
     public void openCinematicCameraSettings() {
-        mc.setScreenAndShow(new CinematicCameraScreen());
+        mc.gui.setScreen(new CinematicCameraScreen());
     }
 
     public void openThirdPerson1Settings() {
-        mc.setScreenAndShow(new ThirdPersonCameraScreen(0,
+        mc.gui.setScreen(new ThirdPersonCameraScreen(0,
                 CameraUtils.CLIENT_CONFIG.thirdPersonOffsetX1,
                 CameraUtils.CLIENT_CONFIG.thirdPersonOffsetY1,
                 CameraUtils.CLIENT_CONFIG.thirdPersonOffsetZ1,
@@ -190,7 +190,7 @@ public class KeyEvents {
     }
 
     public void openThirdPerson2Settings() {
-        mc.setScreenAndShow(new ThirdPersonCameraScreen(1,
+        mc.gui.setScreen(new ThirdPersonCameraScreen(1,
                 CameraUtils.CLIENT_CONFIG.thirdPersonOffsetX2,
                 CameraUtils.CLIENT_CONFIG.thirdPersonOffsetY2,
                 CameraUtils.CLIENT_CONFIG.thirdPersonOffsetZ2,
@@ -201,15 +201,15 @@ public class KeyEvents {
     }
 
     public void openThirdPersonSettings() {
-        mc.setScreenAndShow(new ThirdPersonScreen());
+        mc.gui.setScreen(new ThirdPersonScreen());
     }
 
     public void openZoomSettings() {
-        mc.setScreenAndShow(new ZoomScreen());
+        mc.gui.setScreen(new ZoomScreen());
     }
 
     public void openZoomAnimationSettings() {
-        mc.setScreenAndShow(new ZoomAnimationScreen());
+        mc.gui.setScreen(new ZoomAnimationScreen());
     }
 
     public static boolean isModifierDown() {

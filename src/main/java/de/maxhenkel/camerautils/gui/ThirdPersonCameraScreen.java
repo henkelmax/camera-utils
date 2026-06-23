@@ -84,7 +84,7 @@ public class ThirdPersonCameraScreen extends SettingsScreenBase {
             rotationX.reset().save();
             inverted.reset().save();
             hideGui.reset().save();
-            minecraft.setScreenAndShow(new ThirdPersonCameraScreen(slot, offsetX, offsetY, offsetZ, rotationX, inverted, hideGui));
+            minecraft.gui.setScreen(new ThirdPersonCameraScreen(slot, offsetX, offsetY, offsetZ, rotationX, inverted, hideGui));
         }).bounds(guiLeft + 10, guiTop + 7 + font.lineHeight + 10 + 25 * 6, xSize - 20, 20).build());
     }
 

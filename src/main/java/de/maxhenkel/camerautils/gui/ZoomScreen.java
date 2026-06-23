@@ -37,7 +37,7 @@ public class ZoomScreen extends SettingsScreenBase {
             CameraUtils.CLIENT_CONFIG.zoomSensitivity.save();
             CameraUtils.CLIENT_CONFIG.zoom.reset();
             CameraUtils.CLIENT_CONFIG.zoom.save();
-            minecraft.setScreenAndShow(new ZoomScreen());
+            minecraft.gui.setScreen(new ZoomScreen());
         }).bounds(guiLeft + 10, guiTop + 7 + font.lineHeight + 10 + 25 * 2, xSize - 20, 20).build());
     }
 

@@ -27,7 +27,7 @@ public class CinematicCameraScreen extends SettingsScreenBase {
         addRenderableWidget(Button.builder(Component.translatable("message.camerautils.reset"), button -> {
             CameraUtils.CLIENT_CONFIG.cinematicCameraModifier.reset();
             CameraUtils.CLIENT_CONFIG.cinematicCameraModifier.save();
-            minecraft.setScreenAndShow(new CinematicCameraScreen());
+            minecraft.gui.setScreen(new CinematicCameraScreen());
         }).bounds(guiLeft + 10, guiTop + 7 + font.lineHeight + 10 + 25, xSize - 20, 20).build());
     }
 
